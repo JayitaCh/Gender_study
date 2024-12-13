@@ -136,12 +136,12 @@ apollo_probabilities=function(apollo_beta, apollo_inputs,
   # V = list(
   #   bus = asc_bus + bAT*at_bus + bWT*wt_bus + bTT*tt_bus + bTC*tc_bus,
   #   metro = asc_metro + mAT*at_metro + mWT*wt_metro + mTT*tt_metro + mTC*tc_metro)
-  mnl_settings = list(
-    alternatives  = c(bus="Bus", metro="Metro",others="None"),
-    avail         = list(bus=av_bus, metro=av_metro,others=av_others),
-    choiceVar     = Choice,
-    V             = V
-  )
+  # mnl_settings = list(
+  #   alternatives  = c(bus="Bus", metro="Metro",others="None"),
+  #   avail         = list(bus=av_bus, metro=av_metro,others=av_others),
+  #   choiceVar     = Choice,
+  #   V             = V
+  # )
   P[['model']] = apollo_mnl(mnl_settings, functionality)
   
   ### Comment out as necessary
