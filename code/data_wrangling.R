@@ -4,14 +4,18 @@ require(reshape2)
 require(dplyr)
 
 ### Load Design data ###
-design_df <- read.csv("data/design/design_v3.csv")
+design_df <- read.csv("data/design/design_v8.csv")
 
 design_bus <- design_df[seq(1, nrow(design_df), by = 2), ]
 design_bus$Block <- rep(1:ceiling(nrow(design_bus)/3), each = 3)[1:nrow(design_bus)]
 design_bus$chSet <- ave(design_bus$Block,design_bus$Block,FUN=seq_along)
 
 design_bus <- design_bus %>%
-  select(-c("X","m.at","m.wt","m.tc"))
+  select(-c("Set..ID","Set","alternative","MODE",
+            "m.at","m.wt","m.tc","Total.Travel.time",
+            "Difference.in.TT.between.two.alternatives",
+            "Condition..rejecting.if.the.difference.in.Travel.time.between.two.alternatives.is.greater.than.equal.to.25minutes.",
+            "Block.Number"))
 
 colnames(design_bus) <- ifelse(startsWith(colnames(design_bus), "b"), 
                                colnames(design_bus), 
@@ -21,7 +25,11 @@ rownames(design_bus)<-NULL
 
 design_metro <- design_df[seq(2, nrow(design_df), by = 2), ]
 design_metro <- design_metro %>%
-  select(-c("X","b.at","b.wt","b.tc"))
+  select(-c("Set..ID","Set","alternative","MODE",
+            "b.at","b.wt","b.tc","Total.Travel.time",
+            "Difference.in.TT.between.two.alternatives",
+            "Condition..rejecting.if.the.difference.in.Travel.time.between.two.alternatives.is.greater.than.equal.to.25minutes.",
+            "Block.Number"))
 colnames(design_metro) <- ifelse(startsWith(colnames(design_metro), "m"), 
                                colnames(design_metro), 
                                paste0("m.", colnames(design_metro)))
@@ -49,6 +57,15 @@ df_long$Cards[df_long$Cards=="Choice.Card._1"] <- 1
 df_long$Cards[df_long$Cards=="Choice.Card_2"] <- 2
 df_long$Cards[df_long$Cards=="Choice.Card_3"] <- 3
 df_long$Cards <- as.numeric(df_long$Cards )
+
+df_long$Choice[df_long$Choice=="Choice_1"] <- "Bus"
+df_long$Choice[df_long$Choice=="Choice_2"] <- "Metro"
+df_long$Choice[df_long$Choice=="Choice_3"] <- "None"
+
+df_long$PurposeWork <- df_long$Trip_purpose== 1
+df_long$PurposeEdu <- df_long$Trip_purpose== 2
+df_long$PurposeOthers <- df_long$Trip_purpose== 3 |df_long$Trip_purpose== 4 |df_long$Trip_purpose== 5| df_long$Trip_purpose== 6
+df_long$Trip_purpose <- NULL
 
 
 ### Insert choice attributes based on choice set and block information in the design data
@@ -81,3 +98,5 @@ for(i in 1:nrow(combined_design)){
   df_long$sboal_metro[r] <- combined_design$m.s_bo_al[i]
   df_long$safety_metro[r] <- combined_design$m.safety[i]
 }
+
+write.csv(df_long,"data/SP_Gendersafety.csv")

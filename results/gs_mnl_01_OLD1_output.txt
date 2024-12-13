@@ -1,0 +1,275 @@
+Model run by geojch using Apollo 0.3.4 on R 4.4.1 for Windows.
+Please acknowledge the use of Apollo by citing Hess & Palma (2019)
+  DOI 10.1016/j.jocm.2019.100170
+  www.ApolloChoiceModelling.com
+
+Model name                                  : gs_mnl_01
+Model description                           : Simple MNL on Gender safety data
+Model run at                                : 2024-12-13 17:53:32.525847
+Estimation method                           : bgw
+Model diagnosis                             : Relative function convergence
+Optimisation diagnosis                      : Maximum found
+     hessian properties                     : Negative definite
+     maximum eigenvalue                     : -8.097625
+     reciprocal of condition number         : 2.32803e-06
+Number of individuals                       : 966
+Number of rows in database                  : 2717
+Number of modelled outcomes                 : 2717
+
+Number of cores used                        :  1 
+Model without mixing
+
+LL(start)                                   : -14015.08
+LL at equal shares, LL(0)                   : -1883.28
+LL at observed shares, LL(C)                : -1781.5
+LL(final)                                   : -1757.76
+Rho-squared vs equal shares                  :  0.0666 
+Adj.Rho-squared vs equal shares              :  0.0619 
+Rho-squared vs observed shares               :  0.0133 
+Adj.Rho-squared vs observed shares           :  0.0088 
+AIC                                         :  3533.52 
+BIC                                         :  3586.69 
+
+Estimated parameters                        : 9
+Time taken (hh:mm:ss)                       :  00:00:0.8 
+     pre-estimation                         :  00:00:0.25 
+     estimation                             :  00:00:0.32 
+     post-estimation                        :  00:00:0.23 
+Iterations                                  :  18  
+
+Unconstrained optimisation.
+
+Estimates:
+             Estimate        s.e.   t.rat.(0)    Rob.s.e. Rob.t.rat.(0)
+asc_bus      0.000000          NA          NA          NA            NA
+asc_metro    0.901104    0.351323      2.5649    0.343886        2.6204
+bAT          0.016979    0.006996      2.4270    0.007920        2.1436
+bWT         -0.004417    0.010871     -0.4063    0.010234       -0.4316
+bTT         -0.023611    0.006585     -3.5856    0.006727       -3.5100
+bTC          0.045846    0.008290      5.5300    0.007913        5.7939
+mAT         -0.008005    0.013164     -0.6081    0.013164       -0.6081
+mWT          0.007764    0.019789      0.3923    0.018162        0.4275
+mTT         -0.006577    0.005366     -1.2258    0.005629       -1.1685
+mTC         -0.005372    0.006922     -0.7760    0.007655       -0.7018
+
+
+Overview of choices for MNL model component :
+                                    bus  metro
+Times available                  2717.0 2717.0
+Times chosen                      989.0 1728.0
+Percentage chosen overall          36.4   63.6
+Percentage chosen when available   36.4   63.6
+
+
+
+Classical covariance matrix:
+            asc_metro         bAT         bWT         bTT         bTC         mAT         mWT
+asc_metro    0.123428    0.001107    0.001298  2.4740e-04  6.7967e-04   -0.001400   -0.001270
+bAT          0.001107   4.894e-05   3.124e-05   2.073e-06   1.282e-05   3.478e-06  -2.108e-05
+bWT          0.001298   3.124e-05  1.1817e-04   1.241e-05  -1.131e-06   1.808e-05  -2.273e-05
+bTT        2.4740e-04   2.073e-06   1.241e-05   4.336e-05  -1.876e-05   3.523e-05  -3.757e-05
+bTC        6.7967e-04   1.282e-05  -1.131e-06  -1.876e-05   6.873e-05  -2.413e-05   6.719e-05
+mAT         -0.001400   3.478e-06   1.808e-05   3.523e-05  -2.413e-05  1.7330e-04  -9.238e-05
+mWT         -0.001270  -2.108e-05  -2.273e-05  -3.757e-05   6.719e-05  -9.238e-05  3.9161e-04
+mTT       -2.4725e-04   6.791e-06   1.189e-05   2.564e-05  -1.380e-05   2.089e-05  -4.167e-05
+mTC       -9.8036e-04   1.396e-05   2.391e-05   1.628e-05  -9.666e-07   3.700e-05  -1.814e-05
+                  mTT         mTC
+asc_metro -2.4725e-04 -9.8036e-04
+bAT         6.791e-06   1.396e-05
+bWT         1.189e-05   2.391e-05
+bTT         2.564e-05   1.628e-05
+bTC        -1.380e-05  -9.666e-07
+mAT         2.089e-05   3.700e-05
+mWT        -4.167e-05  -1.814e-05
+mTT         2.879e-05   1.357e-05
+mTC         1.357e-05   4.791e-05
+
+Robust covariance matrix:
+            asc_metro         bAT         bWT         bTT         bTC         mAT         mWT
+asc_metro    0.118257    0.001288    0.001295  2.1884e-04    0.001286   -0.001522  8.8161e-04
+bAT          0.001288   6.273e-05   2.934e-05   8.200e-06   1.982e-05   6.883e-06  -2.210e-05
+bWT          0.001295   2.934e-05  1.0473e-04   2.131e-05   6.964e-06   2.182e-05   1.332e-06
+bTT        2.1884e-04   8.200e-06   2.131e-05   4.525e-05  -1.501e-05   4.138e-05  -3.086e-05
+bTC          0.001286   1.982e-05   6.964e-06  -1.501e-05   6.261e-05  -4.105e-05   6.128e-05
+mAT         -0.001522   6.883e-06   2.182e-05   4.138e-05  -4.105e-05  1.7330e-04 -1.1914e-04
+mWT        8.8161e-04  -2.210e-05   1.332e-06  -3.086e-05   6.128e-05 -1.1914e-04  3.2986e-04
+mTT       -2.4035e-04   9.901e-06   1.429e-05   2.712e-05  -9.560e-06   2.585e-05  -4.886e-05
+mTC       -8.6823e-04   2.544e-05   2.591e-05   2.249e-05  -6.972e-06   4.522e-05  -3.965e-05
+                  mTT         mTC
+asc_metro -2.4035e-04 -8.6823e-04
+bAT         9.901e-06   2.544e-05
+bWT         1.429e-05   2.591e-05
+bTT         2.712e-05   2.249e-05
+bTC        -9.560e-06  -6.972e-06
+mAT         2.585e-05   4.522e-05
+mWT        -4.886e-05  -3.965e-05
+mTT         3.169e-05   1.602e-05
+mTC         1.602e-05   5.859e-05
+
+Classical correlation matrix:
+            asc_metro         bAT         bWT         bTT         bTC         mAT         mWT
+asc_metro      1.0000     0.45030     0.33983     0.10694     0.23335    -0.30264     -0.1826
+bAT            0.4503     1.00000     0.41080     0.04499     0.22097     0.03776     -0.1523
+bWT            0.3398     0.41080     1.00000     0.17336    -0.01256     0.12635     -0.1057
+bTT            0.1069     0.04499     0.17336     1.00000    -0.34357     0.40645     -0.2883
+bTC            0.2334     0.22097    -0.01256    -0.34357     1.00000    -0.22112      0.4095
+mAT           -0.3026     0.03776     0.12635     0.40645    -0.22112     1.00000     -0.3546
+mWT           -0.1826    -0.15230    -0.10568    -0.28831     0.40953    -0.35461      1.0000
+mTT           -0.1312     0.18092     0.20381     0.72552    -0.31020     0.29567     -0.3924
+mTC           -0.4031     0.28828     0.31770     0.35725    -0.01684     0.40604     -0.1324
+                  mTT         mTC
+asc_metro     -0.1312    -0.40313
+bAT            0.1809     0.28828
+bWT            0.2038     0.31770
+bTT            0.7255     0.35725
+bTC           -0.3102    -0.01684
+mAT            0.2957     0.40604
+mWT           -0.3924    -0.13242
+mTT            1.0000     0.36524
+mTC            0.3652     1.00000
+
+Robust correlation matrix:
+            asc_metro         bAT         bWT         bTT         bTC         mAT         mWT
+asc_metro     1.00000     0.47295    0.368015     0.09460     0.47253    -0.33610    0.141155
+bAT           0.47295     1.00000    0.361990     0.15390     0.31631     0.06601   -0.153638
+bWT           0.36802     0.36199    1.000000     0.30959     0.08599     0.16193    0.007168
+bTT           0.09460     0.15390    0.309587     1.00000    -0.28200     0.46727   -0.252592
+bTC           0.47253     0.31631    0.085994    -0.28200     1.00000    -0.39404    0.426403
+mAT          -0.33610     0.06601    0.161934     0.46727    -0.39404     1.00000   -0.498303
+mWT           0.14116    -0.15364    0.007168    -0.25259     0.42640    -0.49830    1.000000
+mTT          -0.12416     0.22208    0.248069     0.71623    -0.21463     0.34884   -0.477913
+mTC          -0.32984     0.41960    0.330701     0.43682    -0.11511     0.44874   -0.285177
+                  mTT         mTC
+asc_metro     -0.1242     -0.3298
+bAT            0.2221      0.4196
+bWT            0.2481      0.3307
+bTT            0.7162      0.4368
+bTC           -0.2146     -0.1151
+mAT            0.3488      0.4487
+mWT           -0.4779     -0.2852
+mTT            1.0000      0.3719
+mTC            0.3719      1.0000
+
+ 20 most extreme outliers in terms of lowest average per choice prediction:
+  ID Avg prob per choice
+ 486           0.2784946
+ 878           0.2784946
+ 920           0.2784946
+ 170           0.3037658
+ 580           0.3037658
+ 759           0.3037658
+ 489           0.3058601
+ 535           0.3058601
+ 538           0.3058601
+   7           0.3276251
+  37           0.3276251
+  41           0.3276251
+  67           0.3276251
+ 173           0.3276251
+ 219           0.3276251
+ 241           0.3276251
+ 251           0.3276251
+ 391           0.3276251
+ 392           0.3276251
+ 428           0.3276251
+
+Changes in parameter estimates from starting values:
+              Initial    Estimate  Difference
+asc_bus         0.000    0.000000      0.0000
+asc_metro       0.000    0.901104      0.9011
+bAT            -1.000    0.016979      1.0170
+bWT            -1.000   -0.004417      0.9956
+bTT            -1.000   -0.023611      0.9764
+bTC            -1.000    0.045846      1.0458
+mAT            -1.000   -0.008005      0.9920
+mWT            -1.000    0.007764      1.0078
+mTT            -1.000   -0.006577      0.9934
+mTC            -1.000   -0.005372      0.9946
+
+Settings and functions used in model definition:
+
+apollo_control
+--------------
+                       Value                                                                                                        
+modelName              "gs_mnl_01"                                                                                                  
+modelDescr             "Simple MNL on Gender safety data"                                                                           
+indivID                "id"                                                                                                         
+debug                  "FALSE"                                                                                                      
+nCores                 "1"                                                                                                          
+workInLogs             "FALSE"                                                                                                      
+seed                   "13"                                                                                                         
+mixing                 "FALSE"                                                                                                      
+HB                     "FALSE"                                                                                                      
+noValidation           "FALSE"                                                                                                      
+noDiagnostics          "FALSE"                                                                                                      
+calculateLLC           "TRUE"                                                                                                       
+analyticHessian        "FALSE"                                                                                                      
+memorySaver            "FALSE"                                                                                                      
+outputDirectory        "C:/Users/geojch/OneDrive - University of Leeds/Modeling Work/CEPT/CEPT_Gender_Safety/git_repo/Gender_study/"
+panelData              "TRUE"                                                                                                       
+analyticGrad           "TRUE"                                                                                                       
+analyticGrad_manualSet "FALSE"                                                                                                      
+overridePanel          "FALSE"                                                                                                      
+preventOverridePanel   "FALSE"                                                                                                      
+noModification         "FALSE"                                                                                                      
+
+Hessian routines attempted
+--------------------------
+numerical jacobian of LL analytical gradient
+
+Scaling used in computing Hessian
+---------------------------------
+                Value
+asc_metro 0.901104079
+bAT       0.016978634
+bWT       0.004416597
+bTT       0.023611318
+bTC       0.045845782
+mAT       0.008005461
+mWT       0.007763700
+mTT       0.006577432
+mTC       0.005371674
+
+
+apollo_probabilities
+----------------------
+function(apollo_beta, apollo_inputs, 
+                              functionality="estimate"){
+  ### Initialise
+  apollo_attach(apollo_beta, apollo_inputs)
+  on.exit(apollo_detach(apollo_beta, apollo_inputs))
+  P = list()
+  
+  ### MNL
+  # V = list(
+  #   bus = asc_bus + bAT*at_bus + bWT*wt_bus + bTT*tt_bus + bTC*tc_bus + bCro*sboal_bus + 
+  #     bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+
+  #     bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2) +
+  #     bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2), 
+  #   metro = asc_metro + mAT*at_metro + mWT*wt_metro + mTT*tt_metro + mTC*tc_metro + mCro*sboal_metro + 
+  #     mWaitEnv1*(swaitenv_metro ==1) + mWaitEnv2*(swaitenv_metro ==2)+
+  #     mStop1*(saccstop_metro ==1) + mStop2*(saccstop_metro ==2) +
+  #     mSafety1*(safety_metro==1) + mSafety2*(safety_metro==2),
+  #   others = asc_others)
+  # mnl_settings = list(
+  #   alternatives  = c(bus="Bus", metro="Metro",others="None"), 
+  #   avail         = list(bus=av_bus, metro=av_metro,others=av_others), 
+  #   choiceVar     = Choice,
+  #   V             = V
+  # )
+  V = list(
+    bus = asc_bus + bAT*at_bus + bWT*wt_bus + bTT*tt_bus + bTC*tc_bus,
+    metro = asc_metro + mAT*at_metro + mWT*wt_metro + mTT*tt_metro + mTC*tc_metro)
+  mnl_settings = list(
+    alternatives  = c(bus="Bus", metro="Metro"),
+    avail         = list(bus=av_bus, metro=av_metro),
+    choiceVar     = Choice,
+    V             = V
+  )
+  P[['model']] = apollo_mnl(mnl_settings, functionality)
+  
+  ### Comment out as necessary
+  P = apollo_panelProd(P, apollo_inputs, functionality)
+  P = apollo_prepareProb(P, apollo_inputs, functionality)
+  return(P)
+}
