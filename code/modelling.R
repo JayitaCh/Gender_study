@@ -11,7 +11,7 @@ apollo_initialise()
 
 ### Set core controls
 apollo_control = list(
-  modelName  ="gs_mnl_01",
+  modelName  ="gs_mnl_02",
   modelDescr ="Simple MNL on Gender safety data",
   indivID    ="id"
 )
@@ -21,14 +21,14 @@ apollo_control = list(
 # ################################################################# #
 database <- read.csv('data/SP_Gendersafety.csv')
 
-database$saccstop_bus[database$saccstop_bus=="Access infrastructure as of now"] <- 1
-database$saccstop_bus[database$saccstop_bus=="Active and well-lit streets and footpaths"] <- 2
-database$saccstop_bus[database$saccstop_bus=="Clear signages and boards"] <- 3
+database$saccstop_bus[database$saccstop_bus=="Active and well-lit streets and footpaths"] <- 1
+database$saccstop_bus[database$saccstop_bus=="Clear signages and boards"] <- 2
+database$saccstop_bus[database$saccstop_bus=="Access infrastructure as of now"] <- 3
 database$saccstop_bus <-as.numeric(database$saccstop_bus)
 
-database$saccstop_metro[database$saccstop_metro=="Access infrastructure as of now"] <- 1
-database$saccstop_metro[database$saccstop_metro=="Active and well-lit streets and footpaths"] <- 2
-database$saccstop_metro[database$saccstop_metro=="Clear signages and boards"] <- 3
+database$saccstop_metro[database$saccstop_metro=="Active and well-lit streets and footpaths"] <- 1
+database$saccstop_metro[database$saccstop_metro=="Clear signages and boards"] <- 2
+database$saccstop_metro[database$saccstop_metro=="Access infrastructure as of now"] <- 3
 database$saccstop_metro <- as.numeric(database$saccstop_metro)
 
 database$sboal_bus[database$sboal_bus=="Boarding/alighting in crowded conditions"] <- 1
@@ -49,14 +49,14 @@ database$swaitenv_metro[database$swaitenv_metro=="Staff/police presence or help 
 database$swaitenv_metro[database$swaitenv_metro=="Waiting alone"] <- 3
 database$swaitenv_metro <- as.numeric(database$swaitenv_metro)
 
-database$safety_bus[database$safety_bus=="Comfortable standing with adequate grab handles for support"] <- 1
-database$safety_bus[database$safety_bus=="Crowded standing"] <- 2
-database$safety_bus[database$safety_bus=="Seating space available"] <- 3
+database$safety_bus[database$safety_bus=="Seating space available"] <- 1
+database$safety_bus[database$safety_bus=="Comfortable standing with adequate grab handles for support"] <- 2
+database$safety_bus[database$safety_bus=="Crowded standing"] <- 3
 database$safety_bus <- as.numeric(database$safety_bus)
 
-database$safety_metro[database$safety_metro=="Comfortable standing with adequate grab handles for support"] <- 1
-database$safety_metro[database$safety_metro=="Crowded standing"] <- 2
-database$safety_metro[database$safety_metro=="Seating space available"] <- 3
+database$safety_metro[database$safety_metro=="Seating space available"] <- 1
+database$safety_metro[database$safety_metro=="Comfortable standing with adequate grab handles for support"] <- 2
+database$safety_metro[database$safety_metro=="Crowded standing"] <- 3
 database$safety_metro <- as.numeric(database$safety_metro)
 
 database$av_bus <- TRUE
