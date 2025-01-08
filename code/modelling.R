@@ -11,15 +11,19 @@ apollo_initialise()
 
 ### Set core controls
 apollo_control = list(
-  modelName  ="gs_mnl_02",
+  modelName  ="gs_mnl_PT_01",
   modelDescr ="Simple MNL on Gender safety data",
-  indivID    ="id"
+  indivID    ="id",
+  outputDirectory = "results/"
 )
 
 # ################################################################# #
 #### LOAD DATA AND APPLY ANY TRANSFORMATIONS                     ####
 # ################################################################# #
 database <- read.csv('data/SP_Gendersafety.csv')
+
+# Data wrangling to generate PT and non-PT users
+database$PT_users <- ifelse(database$Primary_mode %in% c(1,2),1,0)
 
 database$saccstop_bus[database$saccstop_bus=="Active and well-lit streets and footpaths"] <- 1
 database$saccstop_bus[database$saccstop_bus=="Clear signages and boards"] <- 2
@@ -63,6 +67,9 @@ database$av_bus <- TRUE
 database$av_metro <- TRUE
 database$av_others <- TRUE
 
+database_PT <-database[database$PT_users==1,]
+database_nonPT <-database[database$PT_users==0,]
+
 # database <- database %>%
 #   filter(Choice!="None")
 
@@ -101,7 +108,8 @@ apollo_fixed = c('asc_bus')
 # ################################################################# #
 
 
-apollo_inputs = apollo_validateInputs(database = database)
+# apollo_inputs = apollo_validateInputs(database = database)
+apollo_inputs = apollo_validateInputs(database = database_PT)
 
 
 # ################################################################# #
@@ -118,11 +126,11 @@ apollo_probabilities=function(apollo_beta, apollo_inputs,
   
   ### MNL
   V = list(
-    bus = asc_bus + bAT*at_bus + bWT*wt_bus + bTT*tt_bus + bTC*tc_bus + bCro*sboal_bus +
+    bus = asc_bus + bAT*at_bus + bWT*wt_bus + bTT*tt_bus + bTC*tc_bus + bCro*(sboal_bus==2) +
       bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+
       bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2) +
       bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
-    metro = asc_metro + mAT*at_metro + mWT*wt_metro + mTT*tt_metro + mTC*tc_metro + mCro*sboal_metro +
+    metro = asc_metro + mAT*at_metro + mWT*wt_metro + mTT*tt_metro + mTC*tc_metro + mCro*(sboal_metro==2) +
       mWaitEnv1*(swaitenv_metro ==1) + mWaitEnv2*(swaitenv_metro ==2)+
       mStop1*(saccstop_metro ==1) + mStop2*(saccstop_metro ==2) +
       mSafety1*(safety_metro==1) + mSafety2*(safety_metro==2),
@@ -149,6 +157,7 @@ apollo_probabilities=function(apollo_beta, apollo_inputs,
   P = apollo_prepareProb(P, apollo_inputs, functionality)
   return(P)
 }
+
 
 # ################################################################# #
 #### MODEL ESTIMATION & OUTPUT                                   ####
