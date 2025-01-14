@@ -1,0 +1,574 @@
+Model run by geojch using Apollo 0.3.4 on R 4.4.1 for Windows.
+Please acknowledge the use of Apollo by citing Hess & Palma (2019)
+  DOI 10.1016/j.jocm.2019.100170
+  www.ApolloChoiceModelling.com
+
+Model name                                  : int_mnl_PT_02
+Model description                           : Simple MNL on Gender safety data;
+              Model with income and age
+Model run at                                : 2025-01-14 10:25:51.113401
+Estimation method                           : bgw
+Model diagnosis                             : Iteration limit
+Number of individuals                       : 511
+Number of rows in database                  : 1533
+Number of modelled outcomes                 : 1533
+
+Number of cores used                        :  1 
+Model without mixing
+
+LL(start)                                   : -1684.17
+LL at equal shares, LL(0)                   : -1684.17
+LL at observed shares, LL(C)                : -1257.07
+LL(final)                                   : -1117.18
+Rho-squared vs equal shares                  :  0.3367 
+Adj.Rho-squared vs equal shares              :  0.3236 
+Rho-squared vs observed shares               :  0.1113 
+Adj.Rho-squared vs observed shares           :  0.0954 
+AIC                                         :  2278.37 
+BIC                                         :  2395.74 
+
+Estimated parameters                        : 22
+Time taken (hh:mm:ss)                       :  00:00:3.45 
+     pre-estimation                         :  00:00:0.45 
+     estimation                             :  00:00:2.98 
+     post-estimation                        :  00:00:0.01 
+Iterations                                  :  200 (Iteration limit) 
+
+Unconstrained optimisation.
+
+Estimates:
+              Estimate        s.e.   t.rat.(0)    Rob.s.e. Rob.t.rat.(0)
+asc_bus       0.000000          NA          NA          NA            NA
+asc_metro   151.545143          NA          NA          NA            NA
+asc_others -159.136024          NA          NA          NA            NA
+bTInc        -0.368494          NA          NA          NA            NA
+bCost      -157.455357          NA          NA          NA            NA
+lTIn          1.433673          NA          NA          NA            NA
+lcos         -0.003084          NA          NA          NA            NA
+bCro         -0.613544          NA          NA          NA            NA
+bWaitEnv1     1.212810          NA          NA          NA            NA
+bWaitEnv2     2.205826          NA          NA          NA            NA
+bStop1       -0.662714          NA          NA          NA            NA
+bStop2       -0.287466          NA          NA          NA            NA
+bSafety1      1.026631          NA          NA          NA            NA
+bSafety2      1.205722          NA          NA          NA            NA
+mTInc        -0.188536          NA          NA          NA            NA
+mCost      -311.698664          NA          NA          NA            NA
+mCro          0.261135          NA          NA          NA            NA
+mWaitEnv1     0.493263          NA          NA          NA            NA
+mWaitEnv2    -0.636383          NA          NA          NA            NA
+mStop1        1.906882          NA          NA          NA            NA
+mStop2        0.990620          NA          NA          NA            NA
+mSafety1      0.848447          NA          NA          NA            NA
+mSafety2      0.958843          NA          NA          NA            NA
+
+
+Overview of choices for MNL model component :
+                                     bus   metro  others
+Times available                  1533.00 1533.00 1533.00
+Times chosen                      575.00  891.00   67.00
+Percentage chosen overall          37.51   58.12    4.37
+Percentage chosen when available   37.51   58.12    4.37
+
+
+
+Classical covariance matrix:
+            asc_metro asc_others      bTInc      bCost       lTIn       lcos       bCro
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+lTIn               NA         NA         NA         NA         NA         NA         NA
+lcos               NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStop1             NA         NA         NA         NA         NA         NA         NA
+bStop2             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+mTInc              NA         NA         NA         NA         NA         NA         NA
+mCost              NA         NA         NA         NA         NA         NA         NA
+mCro               NA         NA         NA         NA         NA         NA         NA
+mWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+mWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+mStop1             NA         NA         NA         NA         NA         NA         NA
+mStop2             NA         NA         NA         NA         NA         NA         NA
+mSafety1           NA         NA         NA         NA         NA         NA         NA
+mSafety2           NA         NA         NA         NA         NA         NA         NA
+            bWaitEnv1  bWaitEnv2     bStop1     bStop2   bSafety1   bSafety2      mTInc
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+lTIn               NA         NA         NA         NA         NA         NA         NA
+lcos               NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStop1             NA         NA         NA         NA         NA         NA         NA
+bStop2             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+mTInc              NA         NA         NA         NA         NA         NA         NA
+mCost              NA         NA         NA         NA         NA         NA         NA
+mCro               NA         NA         NA         NA         NA         NA         NA
+mWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+mWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+mStop1             NA         NA         NA         NA         NA         NA         NA
+mStop2             NA         NA         NA         NA         NA         NA         NA
+mSafety1           NA         NA         NA         NA         NA         NA         NA
+mSafety2           NA         NA         NA         NA         NA         NA         NA
+                mCost       mCro  mWaitEnv1  mWaitEnv2     mStop1     mStop2   mSafety1
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+lTIn               NA         NA         NA         NA         NA         NA         NA
+lcos               NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStop1             NA         NA         NA         NA         NA         NA         NA
+bStop2             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+mTInc              NA         NA         NA         NA         NA         NA         NA
+mCost              NA         NA         NA         NA         NA         NA         NA
+mCro               NA         NA         NA         NA         NA         NA         NA
+mWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+mWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+mStop1             NA         NA         NA         NA         NA         NA         NA
+mStop2             NA         NA         NA         NA         NA         NA         NA
+mSafety1           NA         NA         NA         NA         NA         NA         NA
+mSafety2           NA         NA         NA         NA         NA         NA         NA
+             mSafety2
+asc_metro          NA
+asc_others         NA
+bTInc              NA
+bCost              NA
+lTIn               NA
+lcos               NA
+bCro               NA
+bWaitEnv1          NA
+bWaitEnv2          NA
+bStop1             NA
+bStop2             NA
+bSafety1           NA
+bSafety2           NA
+mTInc              NA
+mCost              NA
+mCro               NA
+mWaitEnv1          NA
+mWaitEnv2          NA
+mStop1             NA
+mStop2             NA
+mSafety1           NA
+mSafety2           NA
+
+Robust covariance matrix:
+            asc_metro asc_others      bTInc      bCost       lTIn       lcos       bCro
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+lTIn               NA         NA         NA         NA         NA         NA         NA
+lcos               NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStop1             NA         NA         NA         NA         NA         NA         NA
+bStop2             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+mTInc              NA         NA         NA         NA         NA         NA         NA
+mCost              NA         NA         NA         NA         NA         NA         NA
+mCro               NA         NA         NA         NA         NA         NA         NA
+mWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+mWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+mStop1             NA         NA         NA         NA         NA         NA         NA
+mStop2             NA         NA         NA         NA         NA         NA         NA
+mSafety1           NA         NA         NA         NA         NA         NA         NA
+mSafety2           NA         NA         NA         NA         NA         NA         NA
+            bWaitEnv1  bWaitEnv2     bStop1     bStop2   bSafety1   bSafety2      mTInc
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+lTIn               NA         NA         NA         NA         NA         NA         NA
+lcos               NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStop1             NA         NA         NA         NA         NA         NA         NA
+bStop2             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+mTInc              NA         NA         NA         NA         NA         NA         NA
+mCost              NA         NA         NA         NA         NA         NA         NA
+mCro               NA         NA         NA         NA         NA         NA         NA
+mWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+mWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+mStop1             NA         NA         NA         NA         NA         NA         NA
+mStop2             NA         NA         NA         NA         NA         NA         NA
+mSafety1           NA         NA         NA         NA         NA         NA         NA
+mSafety2           NA         NA         NA         NA         NA         NA         NA
+                mCost       mCro  mWaitEnv1  mWaitEnv2     mStop1     mStop2   mSafety1
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+lTIn               NA         NA         NA         NA         NA         NA         NA
+lcos               NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStop1             NA         NA         NA         NA         NA         NA         NA
+bStop2             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+mTInc              NA         NA         NA         NA         NA         NA         NA
+mCost              NA         NA         NA         NA         NA         NA         NA
+mCro               NA         NA         NA         NA         NA         NA         NA
+mWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+mWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+mStop1             NA         NA         NA         NA         NA         NA         NA
+mStop2             NA         NA         NA         NA         NA         NA         NA
+mSafety1           NA         NA         NA         NA         NA         NA         NA
+mSafety2           NA         NA         NA         NA         NA         NA         NA
+             mSafety2
+asc_metro          NA
+asc_others         NA
+bTInc              NA
+bCost              NA
+lTIn               NA
+lcos               NA
+bCro               NA
+bWaitEnv1          NA
+bWaitEnv2          NA
+bStop1             NA
+bStop2             NA
+bSafety1           NA
+bSafety2           NA
+mTInc              NA
+mCost              NA
+mCro               NA
+mWaitEnv1          NA
+mWaitEnv2          NA
+mStop1             NA
+mStop2             NA
+mSafety1           NA
+mSafety2           NA
+
+Classical correlation matrix:
+            asc_metro asc_others      bTInc      bCost       lTIn       lcos       bCro
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+lTIn               NA         NA         NA         NA         NA         NA         NA
+lcos               NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStop1             NA         NA         NA         NA         NA         NA         NA
+bStop2             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+mTInc              NA         NA         NA         NA         NA         NA         NA
+mCost              NA         NA         NA         NA         NA         NA         NA
+mCro               NA         NA         NA         NA         NA         NA         NA
+mWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+mWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+mStop1             NA         NA         NA         NA         NA         NA         NA
+mStop2             NA         NA         NA         NA         NA         NA         NA
+mSafety1           NA         NA         NA         NA         NA         NA         NA
+mSafety2           NA         NA         NA         NA         NA         NA         NA
+            bWaitEnv1  bWaitEnv2     bStop1     bStop2   bSafety1   bSafety2      mTInc
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+lTIn               NA         NA         NA         NA         NA         NA         NA
+lcos               NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStop1             NA         NA         NA         NA         NA         NA         NA
+bStop2             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+mTInc              NA         NA         NA         NA         NA         NA         NA
+mCost              NA         NA         NA         NA         NA         NA         NA
+mCro               NA         NA         NA         NA         NA         NA         NA
+mWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+mWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+mStop1             NA         NA         NA         NA         NA         NA         NA
+mStop2             NA         NA         NA         NA         NA         NA         NA
+mSafety1           NA         NA         NA         NA         NA         NA         NA
+mSafety2           NA         NA         NA         NA         NA         NA         NA
+                mCost       mCro  mWaitEnv1  mWaitEnv2     mStop1     mStop2   mSafety1
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+lTIn               NA         NA         NA         NA         NA         NA         NA
+lcos               NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStop1             NA         NA         NA         NA         NA         NA         NA
+bStop2             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+mTInc              NA         NA         NA         NA         NA         NA         NA
+mCost              NA         NA         NA         NA         NA         NA         NA
+mCro               NA         NA         NA         NA         NA         NA         NA
+mWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+mWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+mStop1             NA         NA         NA         NA         NA         NA         NA
+mStop2             NA         NA         NA         NA         NA         NA         NA
+mSafety1           NA         NA         NA         NA         NA         NA         NA
+mSafety2           NA         NA         NA         NA         NA         NA         NA
+             mSafety2
+asc_metro          NA
+asc_others         NA
+bTInc              NA
+bCost              NA
+lTIn               NA
+lcos               NA
+bCro               NA
+bWaitEnv1          NA
+bWaitEnv2          NA
+bStop1             NA
+bStop2             NA
+bSafety1           NA
+bSafety2           NA
+mTInc              NA
+mCost              NA
+mCro               NA
+mWaitEnv1          NA
+mWaitEnv2          NA
+mStop1             NA
+mStop2             NA
+mSafety1           NA
+mSafety2           NA
+
+Robust correlation matrix:
+            asc_metro asc_others      bTInc      bCost       lTIn       lcos       bCro
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+lTIn               NA         NA         NA         NA         NA         NA         NA
+lcos               NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStop1             NA         NA         NA         NA         NA         NA         NA
+bStop2             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+mTInc              NA         NA         NA         NA         NA         NA         NA
+mCost              NA         NA         NA         NA         NA         NA         NA
+mCro               NA         NA         NA         NA         NA         NA         NA
+mWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+mWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+mStop1             NA         NA         NA         NA         NA         NA         NA
+mStop2             NA         NA         NA         NA         NA         NA         NA
+mSafety1           NA         NA         NA         NA         NA         NA         NA
+mSafety2           NA         NA         NA         NA         NA         NA         NA
+            bWaitEnv1  bWaitEnv2     bStop1     bStop2   bSafety1   bSafety2      mTInc
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+lTIn               NA         NA         NA         NA         NA         NA         NA
+lcos               NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStop1             NA         NA         NA         NA         NA         NA         NA
+bStop2             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+mTInc              NA         NA         NA         NA         NA         NA         NA
+mCost              NA         NA         NA         NA         NA         NA         NA
+mCro               NA         NA         NA         NA         NA         NA         NA
+mWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+mWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+mStop1             NA         NA         NA         NA         NA         NA         NA
+mStop2             NA         NA         NA         NA         NA         NA         NA
+mSafety1           NA         NA         NA         NA         NA         NA         NA
+mSafety2           NA         NA         NA         NA         NA         NA         NA
+                mCost       mCro  mWaitEnv1  mWaitEnv2     mStop1     mStop2   mSafety1
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+lTIn               NA         NA         NA         NA         NA         NA         NA
+lcos               NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStop1             NA         NA         NA         NA         NA         NA         NA
+bStop2             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+mTInc              NA         NA         NA         NA         NA         NA         NA
+mCost              NA         NA         NA         NA         NA         NA         NA
+mCro               NA         NA         NA         NA         NA         NA         NA
+mWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+mWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+mStop1             NA         NA         NA         NA         NA         NA         NA
+mStop2             NA         NA         NA         NA         NA         NA         NA
+mSafety1           NA         NA         NA         NA         NA         NA         NA
+mSafety2           NA         NA         NA         NA         NA         NA         NA
+             mSafety2
+asc_metro          NA
+asc_others         NA
+bTInc              NA
+bCost              NA
+lTIn               NA
+lcos               NA
+bCro               NA
+bWaitEnv1          NA
+bWaitEnv2          NA
+bStop1             NA
+bStop2             NA
+bSafety1           NA
+bSafety2           NA
+mTInc              NA
+mCost              NA
+mCro               NA
+mWaitEnv1          NA
+mWaitEnv2          NA
+mStop1             NA
+mStop2             NA
+mSafety1           NA
+mSafety2           NA
+
+ 20 most extreme outliers in terms of lowest average per choice prediction:
+  ID Avg prob per choice
+  58          0.06639886
+ 164          0.07518415
+ 291          0.12611168
+  18          0.12649171
+ 891          0.14179099
+  29          0.16286989
+ 621          0.16930238
+ 580          0.18247089
+ 979          0.18574832
+ 500          0.18676499
+ 256          0.18704193
+  15          0.18973537
+ 322          0.19118522
+  47          0.19202734
+ 390          0.20197860
+ 395          0.20993897
+ 606          0.21124246
+ 635          0.21854251
+ 313          0.21884101
+ 379          0.21913185
+
+Changes in parameter estimates from starting values:
+               Initial    Estimate  Difference
+asc_bus         0.0000    0.000000      0.0000
+asc_metro       0.0000  151.545143    151.5451
+asc_others      0.0000 -159.136024   -159.1360
+bTInc           0.0000   -0.368494     -0.3685
+bCost           0.0000 -157.455357   -157.4554
+lTIn            0.5000    1.433673      0.9337
+lcos           -1.0000   -0.003084      0.9969
+bCro            0.0000   -0.613544     -0.6135
+bWaitEnv1       0.0000    1.212810      1.2128
+bWaitEnv2       0.0000    2.205826      2.2058
+bStop1          0.0000   -0.662714     -0.6627
+bStop2          0.0000   -0.287466     -0.2875
+bSafety1        0.0000    1.026631      1.0266
+bSafety2        0.0000    1.205722      1.2057
+mTInc           0.0000   -0.188536     -0.1885
+mCost           0.0000 -311.698664   -311.6987
+mCro            0.0000    0.261135      0.2611
+mWaitEnv1       0.0000    0.493263      0.4933
+mWaitEnv2       0.0000   -0.636383     -0.6364
+mStop1          0.0000    1.906882      1.9069
+mStop2          0.0000    0.990620      0.9906
+mSafety1        0.0000    0.848447      0.8484
+mSafety2        0.0000    0.958843      0.9588
+
+Settings and functions used in model definition:
+
+apollo_control
+--------------
+                       Value                                                                       
+modelName              "int_mnl_PT_02"                                                             
+modelDescr             "Simple MNL on Gender safety data;\n              Model with income and age"
+indivID                "id"                                                                        
+outputDirectory        "results/"                                                                  
+debug                  "FALSE"                                                                     
+nCores                 "1"                                                                         
+workInLogs             "FALSE"                                                                     
+seed                   "13"                                                                        
+mixing                 "FALSE"                                                                     
+HB                     "FALSE"                                                                     
+noValidation           "FALSE"                                                                     
+noDiagnostics          "FALSE"                                                                     
+calculateLLC           "TRUE"                                                                      
+analyticHessian        "FALSE"                                                                     
+memorySaver            "FALSE"                                                                     
+panelData              "TRUE"                                                                      
+analyticGrad           "TRUE"                                                                      
+analyticGrad_manualSet "FALSE"                                                                     
+overridePanel          "FALSE"                                                                     
+preventOverridePanel   "FALSE"                                                                     
+noModification         "FALSE"                                                                     
+
+Hessian routines attempted
+--------------------------
+none
+
+
+apollo_probabilities
+----------------------
+function(apollo_beta, apollo_inputs, 
+                              functionality="estimate"){
+  ### Initialise
+  apollo_attach(apollo_beta, apollo_inputs)
+  on.exit(apollo_detach(apollo_beta, apollo_inputs))
+  P = list()
+  
+  ### MNL with modified interactions of travel time and hh income and travel cost and hh income
+  tInc <- relInc^lTIn
+  V = list(
+    bus = asc_bus + tInc*bTInc*log(t_bus) + bCost*(tc_bus^lcos)+bCro*(sboal_bus==2) +
+      bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+
+      bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2) +
+      bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
+    metro = asc_metro + tInc*mTInc*log(t_metro) + mCost*(tc_metro^lcos)+ mCro*(sboal_metro==2) +
+      mWaitEnv1*(swaitenv_metro ==1) + mWaitEnv2*(swaitenv_metro ==2)+
+      mStop1*(saccstop_metro ==1) + mStop2*(saccstop_metro ==2) +
+      mSafety1*(safety_metro==1) + mSafety2*(safety_metro==2),
+    others = asc_others)
+  mnl_settings = list(
+    alternatives  = c(bus="Bus", metro="Metro",others="None"),
+    avail         = list(bus=av_bus, metro=av_metro,others=av_others),
+    choiceVar     = Choice,
+    V             = V
+  )
+  # V = list(
+  #   bus = asc_bus + bAT*at_bus + bWT*wt_bus + bTT*tt_bus + bTC*tc_bus,
+  #   metro = asc_metro + mAT*at_metro + mWT*wt_metro + mTT*tt_metro + mTC*tc_metro)
+  # mnl_settings = list(
+  #   alternatives  = c(bus="Bus", metro="Metro",others="None"),
+  #   avail         = list(bus=av_bus, metro=av_metro,others=av_others),
+  #   choiceVar     = Choice,
+  #   V             = V
+  # )
+  P[['model']] = apollo_mnl(mnl_settings, functionality)
+  
+  ### Comment out as necessary
+  P = apollo_panelProd(P, apollo_inputs, functionality)
+  P = apollo_prepareProb(P, apollo_inputs, functionality)
+  return(P)
+}
