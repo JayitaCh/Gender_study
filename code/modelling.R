@@ -11,8 +11,9 @@ apollo_initialise()
 
 ### Set core controls
 apollo_control = list(
-  modelName  ="gs_mnl_PT_01",
-  modelDescr ="Simple MNL on Gender safety data",
+  modelName  ="int_mnl_PT_02",
+  modelDescr ="Simple MNL on Gender safety data;
+              Model with income and age",
   indivID    ="id",
   outputDirectory = "results/"
 )
@@ -67,6 +68,11 @@ database$av_bus <- TRUE
 database$av_metro <- TRUE
 database$av_others <- TRUE
 
+database$relInc <- database$HH_Inc/mean(database$HH_Inc)
+
+database$t_bus <- 1.49*database$at_bus + 1.83*database$wt_bus + database$tt_bus
+database$t_metro <- 1.49*database$at_metro + 1.83*database$wt_metro + database$tt_metro
+
 database_PT <-database[database$PT_users==1,]
 database_nonPT <-database[database$PT_users==0,]
 
@@ -86,13 +92,24 @@ database_nonPT <-database[database$PT_users==0,]
 #               mAT = 1, mWT = 1, mTT = 1, mTC = 1, 
 #               mCro= 1, mWaitEnv= 1, mStop = 1, mSafety = 1)
 
+# No modification of travel time, access time and waiting time
+# apollo_beta=c(asc_bus = 0, asc_metro = 0, asc_others = 0,
+#               bAT = 0, bWT = 0, bTT = 0, bTC = 0,
+#               bCro= 0, bWaitEnv1= 0,bWaitEnv2= 0,
+#               bStop1 = 0, bStop2 = 0,
+#               bSafety1 = 0,bSafety2 = 0,
+#               mAT = 0, mWT = 0, mTT = 0, mTC = 0,
+#               mCro= 0, mWaitEnv1= 0, mWaitEnv2= 0,
+#               mStop1 = 0, mStop2 = 0,
+#               mSafety1 = 0, mSafety2 = 0)
+
+# Modified travel time equation in line 73 & 74. Interacting travel time and travel cost with household income
 apollo_beta=c(asc_bus = 0, asc_metro = 0, asc_others = 0,
-              bAT = 0, bWT = 0, bTT = 0, bTC = 0,
+              bTInc=0, bCost = 0, lTIn = .5,lCos=-1,
               bCro= 0, bWaitEnv1= 0,bWaitEnv2= 0,
               bStop1 = 0, bStop2 = 0,
               bSafety1 = 0,bSafety2 = 0,
-              mAT = 0, mWT = 0, mTT = 0, mTC = 0,
-              mCro= 0, mWaitEnv1= 0, mWaitEnv2= 0,
+              mTInc=0, mCost = 0, mCro= 0, mWaitEnv1= 0, mWaitEnv2= 0,
               mStop1 = 0, mStop2 = 0,
               mSafety1 = 0, mSafety2 = 0)
 
@@ -124,13 +141,14 @@ apollo_probabilities=function(apollo_beta, apollo_inputs,
   on.exit(apollo_detach(apollo_beta, apollo_inputs))
   P = list()
   
-  ### MNL
+  ### MNL with modified interactions of travel time and hh income and travel cost and hh income
+  tInc <- relInc^lTIn
   V = list(
-    bus = asc_bus + bAT*at_bus + bWT*wt_bus + bTT*tt_bus + bTC*tc_bus + bCro*(sboal_bus==2) +
+    bus = asc_bus + tInc*bTInc*t_bus + bCost*(relInc^lCos)*tc_bus+bCro*(sboal_bus==2) +
       bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+
       bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2) +
       bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
-    metro = asc_metro + mAT*at_metro + mWT*wt_metro + mTT*tt_metro + mTC*tc_metro + mCro*(sboal_metro==2) +
+    metro = asc_metro + tInc*mTInc*t_metro + mCost*(relInc^lCos)*tc_metro+ mCro*(sboal_metro==2) +
       mWaitEnv1*(swaitenv_metro ==1) + mWaitEnv2*(swaitenv_metro ==2)+
       mStop1*(saccstop_metro ==1) + mStop2*(saccstop_metro ==2) +
       mSafety1*(safety_metro==1) + mSafety2*(safety_metro==2),
@@ -176,7 +194,7 @@ apollo_saveOutput(model, list(saveEst=FALSE, saveCov=FALSE,
                               saveCorr=FALSE, saveModelObject=FALSE))
 
 
-apollo_deltaMethod(model, list(operation='ratio', parName1='bTT', 
-                               parName2='bTC')) # 1.87 INR/min
+apollo_deltaMethod(model, list(operation='ratio', parName1='bTInc', 
+                               parName2='bCost')) # 1.87 INR/min
 
 
