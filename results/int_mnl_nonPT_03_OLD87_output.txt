@@ -1,0 +1,321 @@
+Model run by geojch using Apollo 0.3.4 on R 4.4.1 for Windows.
+Please acknowledge the use of Apollo by citing Hess & Palma (2019)
+  DOI 10.1016/j.jocm.2019.100170
+  www.ApolloChoiceModelling.com
+
+Model name                                  : int_mnl_nonPT_03
+Model description                           : Simple MNL on Gender safety data;
+              Model with income and age;
+              Considering same cofficient for time and cost
+Model run at                                : 2025-01-15 05:44:20.149934
+Estimation method                           : bgw
+Model diagnosis                             : Relative function convergence
+Optimisation diagnosis                      : Maximum found
+     hessian properties                     : Negative definite
+     maximum eigenvalue                     : -22.496105
+     reciprocal of condition number         : 8.22497e-06
+Number of individuals                       : 489
+Number of rows in database                  : 1467
+Number of modelled outcomes                 : 1467
+
+Number of cores used                        :  1 
+Model without mixing
+
+LL(start)                                   : -1611.66
+LL at equal shares, LL(0)                   : -1611.66
+LL at observed shares, LL(C)                : -1407.23
+LL(final)                                   : -1241.01
+Rho-squared vs equal shares                  :  0.23 
+Adj.Rho-squared vs equal shares              :  0.2244 
+Rho-squared vs observed shares               :  0.1181 
+Adj.Rho-squared vs observed shares           :  0.1131 
+AIC                                         :  2500.03 
+BIC                                         :  2547.65 
+
+Estimated parameters                        : 9
+Time taken (hh:mm:ss)                       :  00:00:1.05 
+     pre-estimation                         :  00:00:0.64 
+     estimation                             :  00:00:0.12 
+     post-estimation                        :  00:00:0.29 
+Iterations                                  :  10  
+
+Unconstrained optimisation.
+
+Estimates:
+              Estimate        s.e.   t.rat.(0)    Rob.s.e. Rob.t.rat.(0)
+asc_bus       0.000000          NA          NA          NA            NA
+asc_metro     0.875758     0.06919    12.65694    0.084861       10.3199
+asc_others   -1.005190     0.19336    -5.19861    0.220507       -4.5585
+bTInc        -0.011249  9.5601e-04   -11.76623    0.001354       -8.3068
+bCost        -0.038532     0.01054    -3.65621    0.012920       -2.9823
+bCro          0.635704     0.07405     8.58445    0.071279        8.9186
+bWaitEnv1     0.105596     0.07763     1.36025    0.085378        1.2368
+bStop1       -0.202774     0.08250    -2.45801    0.083695       -2.4228
+bSafety1      0.425048     0.09485     4.48142    0.090947        4.6736
+bSafety2     -0.009695     0.10872    -0.08918    0.093897       -0.1032
+
+
+Overview of choices for MNL model component :
+                                     bus   metro  others
+Times available                  1467.00 1467.00 1467.00
+Times chosen                      414.00  837.00  216.00
+Percentage chosen overall          28.22   57.06   14.72
+Percentage chosen when available   28.22   57.06   14.72
+
+
+
+Classical covariance matrix:
+             asc_metro  asc_others       bTInc       bCost        bCro   bWaitEnv1
+asc_metro     0.004788    0.003968  -3.403e-06   1.891e-05  6.4422e-04  2.5771e-04
+asc_others    0.003968    0.037387   9.308e-05  9.7185e-04    0.002332    0.005631
+bTInc       -3.403e-06   9.308e-05   9.140e-07   4.684e-06  -2.180e-06  -1.986e-06
+bCost        1.891e-05  9.7185e-04   4.684e-06  1.1106e-04   4.373e-05   2.991e-05
+bCro        6.4422e-04    0.002332  -2.180e-06   4.373e-05    0.005484 -6.6263e-04
+bWaitEnv1   2.5771e-04    0.005631  -1.986e-06   2.991e-05 -6.6263e-04    0.006026
+bStop1     -5.1228e-04    0.005425  -6.277e-06  -6.253e-05 -9.6976e-04  7.4594e-04
+bSafety1      0.002121    0.007063  -4.037e-06   3.903e-06  4.3334e-04    0.001584
+bSafety2     2.293e-05    0.008506  -9.589e-07  -1.556e-05 -4.4619e-04    0.002106
+                bStop1    bSafety1    bSafety2
+asc_metro  -5.1228e-04    0.002121   2.293e-05
+asc_others    0.005425    0.007063    0.008506
+bTInc       -6.277e-06  -4.037e-06  -9.589e-07
+bCost       -6.253e-05   3.903e-06  -1.556e-05
+bCro       -9.6976e-04  4.3334e-04 -4.4619e-04
+bWaitEnv1   7.4594e-04    0.001584    0.002106
+bStop1        0.006805 -2.8149e-04    0.001904
+bSafety1   -2.8149e-04    0.008996    0.005307
+bSafety2      0.001904    0.005307    0.011819
+
+Robust covariance matrix:
+             asc_metro  asc_others       bTInc       bCost        bCro   bWaitEnv1
+asc_metro     0.007201    0.007033  -3.449e-06  -4.467e-05    0.001482    0.001313
+asc_others    0.007033    0.048623  1.7428e-04    0.001402    0.001524    0.006403
+bTInc       -3.449e-06  1.7428e-04   1.834e-06   9.617e-06  -6.296e-06   6.938e-06
+bCost       -4.467e-05    0.001402   9.617e-06  1.6693e-04  -1.022e-05  1.4480e-04
+bCro          0.001482    0.001524  -6.296e-06  -1.022e-05    0.005081 -5.7428e-04
+bWaitEnv1     0.001313    0.006403   6.938e-06  1.4480e-04 -5.7428e-04    0.007289
+bStop1     -9.9465e-04    0.006865   2.961e-06   5.087e-05 -9.0376e-04  -4.007e-05
+bSafety1      0.004373    0.006809  -1.012e-05   4.343e-05  2.1701e-04    0.001746
+bSafety2    6.2495e-04    0.009243   6.596e-06   9.554e-05   -0.001153    0.001894
+                bStop1    bSafety1    bSafety2
+asc_metro  -9.9465e-04    0.004373  6.2495e-04
+asc_others    0.006865    0.006809    0.009243
+bTInc        2.961e-06  -1.012e-05   6.596e-06
+bCost        5.087e-05   4.343e-05   9.554e-05
+bCro       -9.0376e-04  2.1701e-04   -0.001153
+bWaitEnv1   -4.007e-05    0.001746    0.001894
+bStop1        0.007005 -9.2822e-04    0.003561
+bSafety1   -9.2822e-04    0.008271    0.002849
+bSafety2      0.003561    0.002849    0.008817
+
+Classical correlation matrix:
+             asc_metro  asc_others       bTInc       bCost        bCro   bWaitEnv1
+asc_metro     1.000000      0.2966   -0.051443    0.025937     0.12573     0.04798
+asc_others    0.296607      1.0000    0.503539    0.476928     0.16289     0.37512
+bTInc        -0.051443      0.5035    1.000000    0.464860    -0.03079    -0.02676
+bCost         0.025937      0.4769    0.464860    1.000000     0.05603     0.03656
+bCro          0.125729      0.1629   -0.030794    0.056030     1.00000    -0.11527
+bWaitEnv1     0.047978      0.3751   -0.026761    0.036559    -0.11527     1.00000
+bStop1       -0.089748      0.3401   -0.079592   -0.071923    -0.15874     0.11648
+bSafety1      0.323238      0.3851   -0.044517    0.003905     0.06170     0.21508
+bSafety2      0.003048      0.4047   -0.009226   -0.013577    -0.05542     0.24950
+                bStop1    bSafety1    bSafety2
+asc_metro     -0.08975    0.323238    0.003048
+asc_others     0.34013    0.385144    0.404659
+bTInc         -0.07959   -0.044517   -0.009226
+bCost         -0.07192    0.003905   -0.013577
+bCro          -0.15874    0.061697   -0.055422
+bWaitEnv1      0.11648    0.215084    0.249497
+bStop1         1.00000   -0.035976    0.212255
+bSafety1      -0.03598    1.000000    0.514679
+bSafety2       0.21225    0.514679    1.000000
+
+Robust correlation matrix:
+             asc_metro  asc_others       bTInc       bCost        bCro   bWaitEnv1
+asc_metro      1.00000     0.37585    -0.03002    -0.04075     0.24500    0.181168
+asc_others     0.37585     1.00000     0.58365     0.49212     0.09696    0.340125
+bTInc         -0.03002     0.58365     1.00000     0.54968    -0.06523    0.060010
+bCost         -0.04075     0.49212     0.54968     1.00000    -0.01109    0.131269
+bCro           0.24500     0.09696    -0.06523    -0.01109     1.00000   -0.094367
+bWaitEnv1      0.18117     0.34012     0.06001     0.13127    -0.09437    1.000000
+bStop1        -0.14004     0.37196     0.02612     0.04705    -0.15149   -0.005607
+bSafety1       0.56664     0.33955    -0.08218     0.03696     0.03348    0.224833
+bSafety2       0.07843     0.44640     0.05187     0.07875    -0.17232    0.236225
+                bStop1    bSafety1    bSafety2
+asc_metro    -0.140044     0.56664     0.07843
+asc_others    0.371964     0.33955     0.44640
+bTInc         0.026123    -0.08218     0.05187
+bCost         0.047046     0.03696     0.07875
+bCro         -0.151492     0.03348    -0.17232
+bWaitEnv1    -0.005607     0.22483     0.23622
+bStop1        1.000000    -0.12194     0.45315
+bSafety1     -0.121944     1.00000     0.33366
+bSafety2      0.453145     0.33366     1.00000
+
+ 20 most extreme outliers in terms of lowest average per choice prediction:
+  ID Avg prob per choice
+ 802          0.04354962
+ 288          0.04911610
+ 341          0.07840359
+ 769          0.11648337
+ 227          0.11925245
+ 717          0.15053718
+ 170          0.15459667
+ 780          0.16649076
+ 986          0.17424216
+ 537          0.17888604
+ 469          0.18575071
+ 878          0.19187946
+ 460          0.19505476
+ 318          0.19692002
+ 323          0.19773573
+ 613          0.20044221
+ 787          0.20460384
+ 136          0.20595380
+ 134          0.20658862
+ 437          0.20740838
+
+Changes in parameter estimates from starting values:
+               Initial    Estimate  Difference
+asc_bus          0.000    0.000000    0.000000
+asc_metro        0.000    0.875758    0.875758
+asc_others       0.000   -1.005190   -1.005190
+bTInc            0.000   -0.011249   -0.011249
+bCost            0.000   -0.038532   -0.038532
+bCro             0.000    0.635704    0.635704
+bWaitEnv1        0.000    0.105596    0.105596
+bStop1           0.000   -0.202774   -0.202774
+bSafety1         0.000    0.425048    0.425048
+bSafety2         0.000   -0.009695   -0.009695
+
+Settings and functions used in model definition:
+
+apollo_control
+--------------
+                       Value                                                                                                                                     
+modelName              "int_mnl_nonPT_03"                                                                                                                        
+modelDescr             "Simple MNL on Gender safety data;\n              Model with income and age;\n              Considering same cofficient for time and cost"
+indivID                "id"                                                                                                                                      
+outputDirectory        "results/"                                                                                                                                
+debug                  "FALSE"                                                                                                                                   
+nCores                 "1"                                                                                                                                       
+workInLogs             "FALSE"                                                                                                                                   
+seed                   "13"                                                                                                                                      
+mixing                 "FALSE"                                                                                                                                   
+HB                     "FALSE"                                                                                                                                   
+noValidation           "FALSE"                                                                                                                                   
+noDiagnostics          "FALSE"                                                                                                                                   
+calculateLLC           "TRUE"                                                                                                                                    
+analyticHessian        "FALSE"                                                                                                                                   
+memorySaver            "FALSE"                                                                                                                                   
+panelData              "TRUE"                                                                                                                                    
+analyticGrad           "TRUE"                                                                                                                                    
+analyticGrad_manualSet "FALSE"                                                                                                                                   
+overridePanel          "FALSE"                                                                                                                                   
+preventOverridePanel   "FALSE"                                                                                                                                   
+noModification         "FALSE"                                                                                                                                   
+
+Hessian routines attempted
+--------------------------
+numerical jacobian of LL analytical gradient
+
+Scaling used in computing Hessian
+---------------------------------
+                 Value
+asc_metro  0.875758190
+asc_others 1.005189915
+bTInc      0.011248643
+bCost      0.038531706
+bCro       0.635703957
+bWaitEnv1  0.105596383
+bStop1     0.202773596
+bSafety1   0.425047858
+bSafety2   0.009694716
+
+
+apollo_probabilities
+----------------------
+function(apollo_beta, apollo_inputs, 
+                              functionality="estimate"){
+  ### Initialise
+  apollo_attach(apollo_beta, apollo_inputs)
+  on.exit(apollo_detach(apollo_beta, apollo_inputs))
+  P = list()
+  
+  ### MNL with modified interactions of travel time and hh income and travel cost and hh income
+  
+  ### Utility equation for PT users
+  # tInc <- relInc^3  
+  # V = list(
+  #   bus = asc_bus + bTInc*tInc*t_bus + bCost*(0.5/relInc)*tc_bus+bCro*(sboal_bus==2)+
+  #     bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+      
+  #     bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2) +      
+  #     bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),    
+  #   metro = asc_metro + bTInc*tInc*t_metro + bCost*(0.5/relInc)*tc_metro+ mCro*(sboal_metro==2) +      
+  #     mWaitEnv1*(swaitenv_metro ==1) + mWaitEnv2*(swaitenv_metro ==2)+      mStop1*(saccstop_metro ==1) + mStop2*(saccstop_metro ==2) +      
+  #     mSafety1*(safety_metro==1) + mSafety2*(safety_metro==2),    
+  #   others = asc_others)
+  
+  ### Utility equation for non-PT users
+  ### Equations without interaction variables and considering the same coefficients across different modes
+  # tInc <- relInc^3
+  # V = list(
+  #   bus = asc_bus + bTInc*log(tInc)*t_bus + bCost*log(relInc**0.5)*tc_bus+bCro*(sboal_bus==2) +
+  #     bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+
+  #     bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2) +
+  #     bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
+  #   metro = asc_metro + bTInc*log(tInc)*t_metro + bCost*log(relInc**0.5)*tc_metro+ bCro*(sboal_metro==2) +
+  #     bWaitEnv1*(swaitenv_metro ==1) + bWaitEnv2*(swaitenv_metro ==2)+
+  #     bStop1*(saccstop_metro ==1) + bStop2*(saccstop_metro ==2) +
+  #     bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
+  #   others = asc_others)
+  ### Equations with interaction variables and considering the same coefficients across different modes
+  # tInc <- relInc^3
+  # V = list(
+  #   bus = asc_bus + bTInc*log(tInc)*t_bus + bCost*log(relInc**0.5)*tc_bus+bCro*(sboal_bus==2) +
+  #     bStWa1*(saccstop_bus==1)*(swaitenv_bus ==1) + bStWa2*(saccstop_bus==2)*(swaitenv_bus ==1) +bStWa3*(saccstop_bus==3)*(swaitenv_bus ==1) +
+  #     bStWa4*(saccstop_bus==1)*(swaitenv_bus ==2) + bStWa5*(saccstop_bus==2)*(swaitenv_bus ==2) +bStWa6*(saccstop_bus==3)*(swaitenv_bus ==2) +
+  #     bStWa7*(saccstop_bus==1)*(swaitenv_bus ==3) +bStWa8*(saccstop_bus==2)*(swaitenv_bus ==3) +bStWa9*(saccstop_bus==3)*(swaitenv_bus ==3) +
+  #     bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
+  #   metro = asc_metro + bTInc*log(tInc)*t_metro + bCost*log(relInc**0.5)*tc_metro+ bCro*(sboal_metro==2) +
+  #     bStWa1*(saccstop_metro==1)*(swaitenv_metro ==1) + bStWa2*(saccstop_metro==2)*(swaitenv_metro ==1) +bStWa3*(saccstop_metro==3)*(swaitenv_metro ==1) +
+  #     bStWa4*(saccstop_metro==1)*(swaitenv_metro ==2) + bStWa5*(saccstop_metro==2)*(swaitenv_metro ==2) +bStWa6*(saccstop_metro==3)*(swaitenv_metro ==2) +
+  #     bStWa7*(saccstop_metro==1)*(swaitenv_metro ==3) +bStWa8*(saccstop_metro==2)*(swaitenv_metro ==3) +bStWa9*(saccstop_metro==3)*(swaitenv_metro ==3)+
+  #     bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
+  #   others = asc_others)
+  
+  tInc <- relInc^3
+  V = list(
+    bus = asc_bus + bTInc*log(tInc)*t_bus + bCost*log(relInc**0.5)*tc_bus+bCro*(sboal_bus==2) +
+      bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv1*(swaitenv_bus ==2)+
+      bStop1*(relInc^0.5)*(saccstop_bus==1) + bStop1*(relInc^0.5)*(saccstop_bus==2) +
+      bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
+    metro = asc_metro + bTInc*log(tInc)*t_metro + bCost*log(relInc**0.5)*tc_metro+ bCro*(sboal_metro==2) +
+      bWaitEnv1*(swaitenv_metro ==1) + bWaitEnv1*(swaitenv_metro ==2)+
+      bStop1*(relInc^0.5)*(saccstop_metro ==1) + bStop1*(relInc^0.5)*(saccstop_metro ==2) +
+      bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
+    others = asc_others)
+  
+  
+  mnl_settings = list(
+    alternatives  = c(bus="Bus", metro="Metro",others="None"),
+    avail         = list(bus=av_bus, metro=av_metro,others=av_others),
+    choiceVar     = Choice,
+    V             = V
+  )
+  # V = list(
+  #   bus = asc_bus + bAT*at_bus + bWT*wt_bus + bTT*tt_bus + bTC*tc_bus,
+  #   metro = asc_metro + mAT*at_metro + mWT*wt_metro + mTT*tt_metro + mTC*tc_metro)
+  # mnl_settings = list(
+  #   alternatives  = c(bus="Bus", metro="Metro",others="None"),
+  #   avail         = list(bus=av_bus, metro=av_metro,others=av_others),
+  #   choiceVar     = Choice,
+  #   V             = V
+  # )
+  P[['model']] = apollo_mnl(mnl_settings, functionality)
+  
+  ### Comment out as necessary
+  P = apollo_panelProd(P, apollo_inputs, functionality)
+  P = apollo_prepareProb(P, apollo_inputs, functionality)
+  return(P)
+}

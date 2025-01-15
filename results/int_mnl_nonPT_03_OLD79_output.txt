@@ -1,0 +1,460 @@
+Model run by geojch using Apollo 0.3.4 on R 4.4.1 for Windows.
+Please acknowledge the use of Apollo by citing Hess & Palma (2019)
+  DOI 10.1016/j.jocm.2019.100170
+  www.ApolloChoiceModelling.com
+
+Model name                                  : int_mnl_nonPT_03
+Model description                           : Simple MNL on Gender safety data;
+              Model with income and age;
+              Considering same cofficient for time and cost
+Model run at                                : 2025-01-15 05:19:23.574187
+Estimation method                           : bgw
+Model diagnosis                             : Singular convergence
+Number of individuals                       : 489
+Number of rows in database                  : 1467
+Number of modelled outcomes                 : 1467
+
+Number of cores used                        :  1 
+Model without mixing
+
+LL(start)                                   : -1611.66
+LL at equal shares, LL(0)                   : -1611.66
+LL at observed shares, LL(C)                : -1407.23
+LL(final)                                   : -1219.32
+Rho-squared vs equal shares                  :  0.2434 
+Adj.Rho-squared vs equal shares              :  0.2329 
+Rho-squared vs observed shares               :  0.1335 
+Adj.Rho-squared vs observed shares           :  0.1229 
+AIC                                         :  2472.64 
+BIC                                         :  2562.58 
+
+Estimated parameters                        : 17
+Time taken (hh:mm:ss)                       :  00:00:1.06 
+     pre-estimation                         :  00:00:0.64 
+     estimation                             :  00:00:0.4 
+     post-estimation                        :  00:00:0.01 
+Iterations                                  :  11 (Singular convergence) 
+
+Unconstrained optimisation.
+
+Estimates:
+              Estimate        s.e.   t.rat.(0)    Rob.s.e. Rob.t.rat.(0)
+asc_bus        0.00000          NA          NA          NA            NA
+asc_metro      0.91714          NA          NA          NA            NA
+asc_others    -1.27664          NA          NA          NA            NA
+bTInc         -0.01133          NA          NA          NA            NA
+bCost         -0.04526          NA          NA          NA            NA
+bCro           0.73472          NA          NA          NA            NA
+bWaitEnv1      1.57414          NA          NA          NA            NA
+bWaitEnv2      0.16726          NA          NA          NA            NA
+bStWa1        -1.85979          NA          NA          NA            NA
+bStWa2        -2.56979          NA          NA          NA            NA
+bStWa3        -1.94045          NA          NA          NA            NA
+bStWa4        -0.46867          NA          NA          NA            NA
+bStWa5        -0.21808          NA          NA          NA            NA
+bStWa6        -0.74539          NA          NA          NA            NA
+bStWa7        -0.06394          NA          NA          NA            NA
+bStWa8        -0.97627          NA          NA          NA            NA
+bSafety1       0.55621          NA          NA          NA            NA
+bSafety2      -0.05178          NA          NA          NA            NA
+
+
+Overview of choices for MNL model component :
+                                     bus   metro  others
+Times available                  1467.00 1467.00 1467.00
+Times chosen                      414.00  837.00  216.00
+Percentage chosen overall          28.22   57.06   14.72
+Percentage chosen when available   28.22   57.06   14.72
+
+
+
+Classical covariance matrix:
+            asc_metro asc_others      bTInc      bCost       bCro  bWaitEnv1  bWaitEnv2
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStWa1             NA         NA         NA         NA         NA         NA         NA
+bStWa2             NA         NA         NA         NA         NA         NA         NA
+bStWa3             NA         NA         NA         NA         NA         NA         NA
+bStWa4             NA         NA         NA         NA         NA         NA         NA
+bStWa5             NA         NA         NA         NA         NA         NA         NA
+bStWa6             NA         NA         NA         NA         NA         NA         NA
+bStWa7             NA         NA         NA         NA         NA         NA         NA
+bStWa8             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+               bStWa1     bStWa2     bStWa3     bStWa4     bStWa5     bStWa6     bStWa7
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStWa1             NA         NA         NA         NA         NA         NA         NA
+bStWa2             NA         NA         NA         NA         NA         NA         NA
+bStWa3             NA         NA         NA         NA         NA         NA         NA
+bStWa4             NA         NA         NA         NA         NA         NA         NA
+bStWa5             NA         NA         NA         NA         NA         NA         NA
+bStWa6             NA         NA         NA         NA         NA         NA         NA
+bStWa7             NA         NA         NA         NA         NA         NA         NA
+bStWa8             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+               bStWa8   bSafety1   bSafety2
+asc_metro          NA         NA         NA
+asc_others         NA         NA         NA
+bTInc              NA         NA         NA
+bCost              NA         NA         NA
+bCro               NA         NA         NA
+bWaitEnv1          NA         NA         NA
+bWaitEnv2          NA         NA         NA
+bStWa1             NA         NA         NA
+bStWa2             NA         NA         NA
+bStWa3             NA         NA         NA
+bStWa4             NA         NA         NA
+bStWa5             NA         NA         NA
+bStWa6             NA         NA         NA
+bStWa7             NA         NA         NA
+bStWa8             NA         NA         NA
+bSafety1           NA         NA         NA
+bSafety2           NA         NA         NA
+
+Robust covariance matrix:
+            asc_metro asc_others      bTInc      bCost       bCro  bWaitEnv1  bWaitEnv2
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStWa1             NA         NA         NA         NA         NA         NA         NA
+bStWa2             NA         NA         NA         NA         NA         NA         NA
+bStWa3             NA         NA         NA         NA         NA         NA         NA
+bStWa4             NA         NA         NA         NA         NA         NA         NA
+bStWa5             NA         NA         NA         NA         NA         NA         NA
+bStWa6             NA         NA         NA         NA         NA         NA         NA
+bStWa7             NA         NA         NA         NA         NA         NA         NA
+bStWa8             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+               bStWa1     bStWa2     bStWa3     bStWa4     bStWa5     bStWa6     bStWa7
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStWa1             NA         NA         NA         NA         NA         NA         NA
+bStWa2             NA         NA         NA         NA         NA         NA         NA
+bStWa3             NA         NA         NA         NA         NA         NA         NA
+bStWa4             NA         NA         NA         NA         NA         NA         NA
+bStWa5             NA         NA         NA         NA         NA         NA         NA
+bStWa6             NA         NA         NA         NA         NA         NA         NA
+bStWa7             NA         NA         NA         NA         NA         NA         NA
+bStWa8             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+               bStWa8   bSafety1   bSafety2
+asc_metro          NA         NA         NA
+asc_others         NA         NA         NA
+bTInc              NA         NA         NA
+bCost              NA         NA         NA
+bCro               NA         NA         NA
+bWaitEnv1          NA         NA         NA
+bWaitEnv2          NA         NA         NA
+bStWa1             NA         NA         NA
+bStWa2             NA         NA         NA
+bStWa3             NA         NA         NA
+bStWa4             NA         NA         NA
+bStWa5             NA         NA         NA
+bStWa6             NA         NA         NA
+bStWa7             NA         NA         NA
+bStWa8             NA         NA         NA
+bSafety1           NA         NA         NA
+bSafety2           NA         NA         NA
+
+Classical correlation matrix:
+            asc_metro asc_others      bTInc      bCost       bCro  bWaitEnv1  bWaitEnv2
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStWa1             NA         NA         NA         NA         NA         NA         NA
+bStWa2             NA         NA         NA         NA         NA         NA         NA
+bStWa3             NA         NA         NA         NA         NA         NA         NA
+bStWa4             NA         NA         NA         NA         NA         NA         NA
+bStWa5             NA         NA         NA         NA         NA         NA         NA
+bStWa6             NA         NA         NA         NA         NA         NA         NA
+bStWa7             NA         NA         NA         NA         NA         NA         NA
+bStWa8             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+               bStWa1     bStWa2     bStWa3     bStWa4     bStWa5     bStWa6     bStWa7
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStWa1             NA         NA         NA         NA         NA         NA         NA
+bStWa2             NA         NA         NA         NA         NA         NA         NA
+bStWa3             NA         NA         NA         NA         NA         NA         NA
+bStWa4             NA         NA         NA         NA         NA         NA         NA
+bStWa5             NA         NA         NA         NA         NA         NA         NA
+bStWa6             NA         NA         NA         NA         NA         NA         NA
+bStWa7             NA         NA         NA         NA         NA         NA         NA
+bStWa8             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+               bStWa8   bSafety1   bSafety2
+asc_metro          NA         NA         NA
+asc_others         NA         NA         NA
+bTInc              NA         NA         NA
+bCost              NA         NA         NA
+bCro               NA         NA         NA
+bWaitEnv1          NA         NA         NA
+bWaitEnv2          NA         NA         NA
+bStWa1             NA         NA         NA
+bStWa2             NA         NA         NA
+bStWa3             NA         NA         NA
+bStWa4             NA         NA         NA
+bStWa5             NA         NA         NA
+bStWa6             NA         NA         NA
+bStWa7             NA         NA         NA
+bStWa8             NA         NA         NA
+bSafety1           NA         NA         NA
+bSafety2           NA         NA         NA
+
+Robust correlation matrix:
+            asc_metro asc_others      bTInc      bCost       bCro  bWaitEnv1  bWaitEnv2
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStWa1             NA         NA         NA         NA         NA         NA         NA
+bStWa2             NA         NA         NA         NA         NA         NA         NA
+bStWa3             NA         NA         NA         NA         NA         NA         NA
+bStWa4             NA         NA         NA         NA         NA         NA         NA
+bStWa5             NA         NA         NA         NA         NA         NA         NA
+bStWa6             NA         NA         NA         NA         NA         NA         NA
+bStWa7             NA         NA         NA         NA         NA         NA         NA
+bStWa8             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+               bStWa1     bStWa2     bStWa3     bStWa4     bStWa5     bStWa6     bStWa7
+asc_metro          NA         NA         NA         NA         NA         NA         NA
+asc_others         NA         NA         NA         NA         NA         NA         NA
+bTInc              NA         NA         NA         NA         NA         NA         NA
+bCost              NA         NA         NA         NA         NA         NA         NA
+bCro               NA         NA         NA         NA         NA         NA         NA
+bWaitEnv1          NA         NA         NA         NA         NA         NA         NA
+bWaitEnv2          NA         NA         NA         NA         NA         NA         NA
+bStWa1             NA         NA         NA         NA         NA         NA         NA
+bStWa2             NA         NA         NA         NA         NA         NA         NA
+bStWa3             NA         NA         NA         NA         NA         NA         NA
+bStWa4             NA         NA         NA         NA         NA         NA         NA
+bStWa5             NA         NA         NA         NA         NA         NA         NA
+bStWa6             NA         NA         NA         NA         NA         NA         NA
+bStWa7             NA         NA         NA         NA         NA         NA         NA
+bStWa8             NA         NA         NA         NA         NA         NA         NA
+bSafety1           NA         NA         NA         NA         NA         NA         NA
+bSafety2           NA         NA         NA         NA         NA         NA         NA
+               bStWa8   bSafety1   bSafety2
+asc_metro          NA         NA         NA
+asc_others         NA         NA         NA
+bTInc              NA         NA         NA
+bCost              NA         NA         NA
+bCro               NA         NA         NA
+bWaitEnv1          NA         NA         NA
+bWaitEnv2          NA         NA         NA
+bStWa1             NA         NA         NA
+bStWa2             NA         NA         NA
+bStWa3             NA         NA         NA
+bStWa4             NA         NA         NA
+bStWa5             NA         NA         NA
+bStWa6             NA         NA         NA
+bStWa7             NA         NA         NA
+bStWa8             NA         NA         NA
+bSafety1           NA         NA         NA
+bSafety2           NA         NA         NA
+
+ 20 most extreme outliers in terms of lowest average per choice prediction:
+  ID Avg prob per choice
+ 802          0.03271406
+ 769          0.04925744
+ 341          0.06628660
+ 227          0.06816768
+ 468          0.09299837
+ 288          0.09871247
+ 559          0.09916661
+ 986          0.10244897
+ 460          0.10711024
+ 787          0.12531782
+ 657          0.14707557
+ 780          0.14723352
+ 170          0.17564164
+ 142          0.18137227
+ 134          0.18429250
+ 306          0.18618123
+ 136          0.18826360
+ 537          0.18986788
+ 344          0.19131953
+  77          0.19444704
+
+Changes in parameter estimates from starting values:
+               Initial    Estimate  Difference
+asc_bus          0.000     0.00000     0.00000
+asc_metro        0.000     0.91714     0.91714
+asc_others       0.000    -1.27664    -1.27664
+bTInc            0.000    -0.01133    -0.01133
+bCost            0.000    -0.04526    -0.04526
+bCro             0.000     0.73472     0.73472
+bWaitEnv1        0.000     1.57414     1.57414
+bWaitEnv2        0.000     0.16726     0.16726
+bStWa1           0.000    -1.85979    -1.85979
+bStWa2           0.000    -2.56979    -2.56979
+bStWa3           0.000    -1.94045    -1.94045
+bStWa4           0.000    -0.46867    -0.46867
+bStWa5           0.000    -0.21808    -0.21808
+bStWa6           0.000    -0.74539    -0.74539
+bStWa7           0.000    -0.06394    -0.06394
+bStWa8           0.000    -0.97627    -0.97627
+bSafety1         0.000     0.55621     0.55621
+bSafety2         0.000    -0.05178    -0.05178
+
+Settings and functions used in model definition:
+
+apollo_control
+--------------
+                       Value                                                                                                                                     
+modelName              "int_mnl_nonPT_03"                                                                                                                        
+modelDescr             "Simple MNL on Gender safety data;\n              Model with income and age;\n              Considering same cofficient for time and cost"
+indivID                "id"                                                                                                                                      
+outputDirectory        "results/"                                                                                                                                
+debug                  "FALSE"                                                                                                                                   
+nCores                 "1"                                                                                                                                       
+workInLogs             "FALSE"                                                                                                                                   
+seed                   "13"                                                                                                                                      
+mixing                 "FALSE"                                                                                                                                   
+HB                     "FALSE"                                                                                                                                   
+noValidation           "FALSE"                                                                                                                                   
+noDiagnostics          "FALSE"                                                                                                                                   
+calculateLLC           "TRUE"                                                                                                                                    
+analyticHessian        "FALSE"                                                                                                                                   
+memorySaver            "FALSE"                                                                                                                                   
+panelData              "TRUE"                                                                                                                                    
+analyticGrad           "TRUE"                                                                                                                                    
+analyticGrad_manualSet "FALSE"                                                                                                                                   
+overridePanel          "FALSE"                                                                                                                                   
+preventOverridePanel   "FALSE"                                                                                                                                   
+noModification         "FALSE"                                                                                                                                   
+
+Hessian routines attempted
+--------------------------
+none
+
+
+apollo_probabilities
+----------------------
+function(apollo_beta, apollo_inputs, 
+                              functionality="estimate"){
+  ### Initialise
+  apollo_attach(apollo_beta, apollo_inputs)
+  on.exit(apollo_detach(apollo_beta, apollo_inputs))
+  P = list()
+  
+  ### MNL with modified interactions of travel time and hh income and travel cost and hh income
+  
+  ### Utility equation for PT users
+  # tInc <- relInc^3  
+  # V = list(
+  #   bus = asc_bus + bTInc*tInc*t_bus + bCost*(0.5/relInc)*tc_bus+bCro*(sboal_bus==2)+
+  #     bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+      
+  #     bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2) +      
+  #     bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),    
+  #   metro = asc_metro + bTInc*tInc*t_metro + bCost*(0.5/relInc)*tc_metro+ mCro*(sboal_metro==2) +      
+  #     mWaitEnv1*(swaitenv_metro ==1) + mWaitEnv2*(swaitenv_metro ==2)+      mStop1*(saccstop_metro ==1) + mStop2*(saccstop_metro ==2) +      
+  #     mSafety1*(safety_metro==1) + mSafety2*(safety_metro==2),    
+  #   others = asc_others)
+  
+  ### Utility equation for non-PT users
+  ### Equations without interaction variables and considering the same coefficients across different modes
+  # tInc <- relInc^3
+  # V = list(
+  #   bus = asc_bus + bTInc*log(tInc)*t_bus + bCost*log(relInc**0.5)*tc_bus+bCro*(sboal_bus==2) +
+  #     bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+
+  #     bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2) +
+  #     bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
+  #   metro = asc_metro + bTInc*log(tInc)*t_metro + bCost*log(relInc**0.5)*tc_metro+ bCro*(sboal_metro==2) +
+  #     bWaitEnv1*(swaitenv_metro ==1) + bWaitEnv2*(swaitenv_metro ==2)+
+  #     bStop1*(saccstop_metro ==1) + bStop2*(saccstop_metro ==2) +
+  #     bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
+  #   others = asc_others)
+  ### Equations with interaction variables and considering the same coefficients across different modes
+  # tInc <- relInc^3
+  # V = list(
+  #   bus = asc_bus + bTInc*log(tInc)*t_bus + bCost*log(relInc**0.5)*tc_bus+bCro*(sboal_bus==2) +
+  #     bStWa1*(saccstop_bus==1)*(swaitenv_bus ==1) + bStWa2*(saccstop_bus==2)*(swaitenv_bus ==1) +bStWa3*(saccstop_bus==3)*(swaitenv_bus ==1) +
+  #     bStWa4*(saccstop_bus==1)*(swaitenv_bus ==2) + bStWa5*(saccstop_bus==2)*(swaitenv_bus ==2) +bStWa6*(saccstop_bus==3)*(swaitenv_bus ==2) +
+  #     bStWa7*(saccstop_bus==1)*(swaitenv_bus ==3) +bStWa8*(saccstop_bus==2)*(swaitenv_bus ==3) +bStWa9*(saccstop_bus==3)*(swaitenv_bus ==3) +
+  #     bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
+  #   metro = asc_metro + bTInc*log(tInc)*t_metro + bCost*log(relInc**0.5)*tc_metro+ bCro*(sboal_metro==2) +
+  #     bStWa1*(saccstop_metro==1)*(swaitenv_metro ==1) + bStWa2*(saccstop_metro==2)*(swaitenv_metro ==1) +bStWa3*(saccstop_metro==3)*(swaitenv_metro ==1) +
+  #     bStWa4*(saccstop_metro==1)*(swaitenv_metro ==2) + bStWa5*(saccstop_metro==2)*(swaitenv_metro ==2) +bStWa6*(saccstop_metro==3)*(swaitenv_metro ==2) +
+  #     bStWa7*(saccstop_metro==1)*(swaitenv_metro ==3) +bStWa8*(saccstop_metro==2)*(swaitenv_metro ==3) +bStWa9*(saccstop_metro==3)*(swaitenv_metro ==3)+
+  #     bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
+  #   others = asc_others)
+  
+  tInc <- relInc^3
+  V = list(
+    bus = asc_bus + bTInc*log(tInc)*t_bus + bCost*log(relInc**0.5)*tc_bus+bCro*(sboal_bus==2) +
+      bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+
+      bStWa1*(saccstop_bus==1)*(swaitenv_bus ==1) + bStWa2*(saccstop_bus==2)*(swaitenv_bus ==1) +bStWa3*(saccstop_bus==3)*(swaitenv_bus ==1) +
+      bStWa4*(saccstop_bus==1)*(swaitenv_bus ==2) + bStWa5*(saccstop_bus==2)*(swaitenv_bus ==2) +bStWa6*(saccstop_bus==3)*(swaitenv_bus ==2) +
+      bStWa7*(saccstop_bus==1)*(swaitenv_bus ==3) +bStWa8*(saccstop_bus==2)*(swaitenv_bus ==3) +
+      bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
+    metro = asc_metro + bTInc*log(tInc)*t_metro + bCost*log(relInc**0.5)*tc_metro+ bCro*(sboal_metro==2) +
+      bWaitEnv1*(swaitenv_metro ==1) + bWaitEnv2*(swaitenv_metro ==2)+
+      bStWa1*(saccstop_metro==1)*(swaitenv_metro ==1) + bStWa2*(saccstop_metro==2)*(swaitenv_metro ==1) +bStWa3*(saccstop_metro==3)*(swaitenv_metro ==1) +
+      bStWa4*(saccstop_metro==1)*(swaitenv_metro ==2) + bStWa5*(saccstop_metro==2)*(swaitenv_metro ==2) +bStWa6*(saccstop_metro==3)*(swaitenv_metro ==2) +
+      bStWa7*(saccstop_metro==1)*(swaitenv_metro ==3) +bStWa8*(saccstop_metro==2)*(swaitenv_metro ==3)+
+      bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
+    others = asc_others)
+  
+  
+  mnl_settings = list(
+    alternatives  = c(bus="Bus", metro="Metro",others="None"),
+    avail         = list(bus=av_bus, metro=av_metro,others=av_others),
+    choiceVar     = Choice,
+    V             = V
+  )
+  # V = list(
+  #   bus = asc_bus + bAT*at_bus + bWT*wt_bus + bTT*tt_bus + bTC*tc_bus,
+  #   metro = asc_metro + mAT*at_metro + mWT*wt_metro + mTT*tt_metro + mTC*tc_metro)
+  # mnl_settings = list(
+  #   alternatives  = c(bus="Bus", metro="Metro",others="None"),
+  #   avail         = list(bus=av_bus, metro=av_metro,others=av_others),
+  #   choiceVar     = Choice,
+  #   V             = V
+  # )
+  P[['model']] = apollo_mnl(mnl_settings, functionality)
+  
+  ### Comment out as necessary
+  P = apollo_panelProd(P, apollo_inputs, functionality)
+  P = apollo_prepareProb(P, apollo_inputs, functionality)
+  return(P)
+}

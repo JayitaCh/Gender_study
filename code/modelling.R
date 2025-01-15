@@ -11,7 +11,7 @@ apollo_initialise()
 
 ### Set core controls
 apollo_control = list(
-  modelName  ="int_mnl_PT_03",
+  modelName  ="int_mnl_nonPT_03",
   modelDescr ="Simple MNL on Gender safety data;
               Model with income and age;
               Considering same cofficient for time and cost",
@@ -90,6 +90,8 @@ database$HH_Inc_num <- sapply(database$HH_Inc,convert_to_numeric)
 
 database$relInc <- database$HH_Inc_num/mean(database$HH_Inc_num)
 
+database$relAge <- database$Age/mean(database$Age)
+
 database$t_bus <- 1.49*database$at_bus + 1.83*database$wt_bus + database$tt_bus
 database$t_metro <- 1.49*database$at_metro + 1.83*database$wt_metro + database$tt_metro
 
@@ -124,14 +126,24 @@ database_nonPT <-database[database$PT_users==0,]
 #               mSafety1 = 0, mSafety2 = 0)
 
 # Modified travel time equation in line 73 & 74. Interacting travel time and travel cost with household income
+# apollo_beta=c(asc_bus = 0, asc_metro = 0, asc_others = 0,
+#               bTInc=0, bCost = 0, bCro= 0, bWaitEnv1= 0,bWaitEnv2= 0,
+#               bStop1 = 0, bStop2 = 0,
+#               bSafety1 = 0,bSafety2 = 0,
+#               mCro= 0, mWaitEnv1= 0, mWaitEnv2= 0,
+#               mStop1 = 0, mStop2 = 0,
+#               mSafety1 = 0, mSafety2 = 0)
+
 apollo_beta=c(asc_bus = 0, asc_metro = 0, asc_others = 0,
-              bTInc=0, bCost = 0, 
-              bCro= 0, bWaitEnv1= 0,bWaitEnv2= 0,
-              bStop1 = 0, bStop2 = 0,
-              bSafety1 = 0,bSafety2 = 0,
-              mCro= 0, mWaitEnv1= 0, mWaitEnv2= 0,
-              mStop1 = 0, mStop2 = 0,
-              mSafety1 = 0, mSafety2 = 0)
+              bTInc=0, bCost = 0, bCro= 0, 
+              bWaitEnv1= 0, bStop1 = 0, 
+              bSafety1 = 0,bSafety2 = 0)
+
+# apollo_beta=c(asc_bus = 0, asc_metro = 0, asc_others = 0,
+#               bTInc=0, bCost = 0, bCro= 0, bStWa1=0,bStWa2=0,
+#               bStWa3=0,bStWa4=0,bStWa5=0,bStWa6=0,
+#               bStWa7=0, bStWa8=0, bStWa9=0,
+#               bSafety1 = 0,bSafety2 = 0)
 
 # apollo_beta=c(asc_bus = 0, asc_metro = 0, bAT = -1, bWT = -1, bTT = -1, bTC = -1,
 #               mAT = -1, mWT = -1, mTT = -1, mTC = -1)
@@ -146,7 +158,7 @@ apollo_fixed = c('asc_bus')
 
 
 # apollo_inputs = apollo_validateInputs(database = database)
-apollo_inputs = apollo_validateInputs(database = database_PT)
+apollo_inputs = apollo_validateInputs(database = database_nonPT)
 
 
 # ################################################################# #
@@ -162,17 +174,60 @@ apollo_probabilities=function(apollo_beta, apollo_inputs,
   P = list()
   
   ### MNL with modified interactions of travel time and hh income and travel cost and hh income
+  
+  ### Utility equation for PT users
+  # tInc <- relInc^3  
+  # V = list(
+  #   bus = asc_bus + bTInc*tInc*t_bus + bCost*(0.5/relInc)*tc_bus+bCro*(sboal_bus==2)+
+  #     bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+      
+  #     bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2) +      
+  #     bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),    
+  #   metro = asc_metro + bTInc*tInc*t_metro + bCost*(0.5/relInc)*tc_metro+ mCro*(sboal_metro==2) +      
+  #     mWaitEnv1*(swaitenv_metro ==1) + mWaitEnv2*(swaitenv_metro ==2)+      mStop1*(saccstop_metro ==1) + mStop2*(saccstop_metro ==2) +      
+  #     mSafety1*(safety_metro==1) + mSafety2*(safety_metro==2),    
+  #   others = asc_others)
+  
+  ### Utility equation for non-PT users
+  ### Equations without interaction variables and considering the same coefficients across different modes
+  # tInc <- relInc^3
+  # V = list(
+  #   bus = asc_bus + bTInc*log(tInc)*t_bus + bCost*log(relInc**0.5)*tc_bus+bCro*(sboal_bus==2) +
+  #     bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+
+  #     bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2) +
+  #     bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
+  #   metro = asc_metro + bTInc*log(tInc)*t_metro + bCost*log(relInc**0.5)*tc_metro+ bCro*(sboal_metro==2) +
+  #     bWaitEnv1*(swaitenv_metro ==1) + bWaitEnv2*(swaitenv_metro ==2)+
+  #     bStop1*(saccstop_metro ==1) + bStop2*(saccstop_metro ==2) +
+  #     bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
+  #   others = asc_others)
+  ### Equations with interaction variables and considering the same coefficients across different modes
+  # tInc <- relInc^3
+  # V = list(
+  #   bus = asc_bus + bTInc*log(tInc)*t_bus + bCost*log(relInc**0.5)*tc_bus+bCro*(sboal_bus==2) +
+  #     bStWa1*(saccstop_bus==1)*(swaitenv_bus ==1) + bStWa2*(saccstop_bus==2)*(swaitenv_bus ==1) +bStWa3*(saccstop_bus==3)*(swaitenv_bus ==1) +
+  #     bStWa4*(saccstop_bus==1)*(swaitenv_bus ==2) + bStWa5*(saccstop_bus==2)*(swaitenv_bus ==2) +bStWa6*(saccstop_bus==3)*(swaitenv_bus ==2) +
+  #     bStWa7*(saccstop_bus==1)*(swaitenv_bus ==3) +bStWa8*(saccstop_bus==2)*(swaitenv_bus ==3) +bStWa9*(saccstop_bus==3)*(swaitenv_bus ==3) +
+  #     bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
+  #   metro = asc_metro + bTInc*log(tInc)*t_metro + bCost*log(relInc**0.5)*tc_metro+ bCro*(sboal_metro==2) +
+  #     bStWa1*(saccstop_metro==1)*(swaitenv_metro ==1) + bStWa2*(saccstop_metro==2)*(swaitenv_metro ==1) +bStWa3*(saccstop_metro==3)*(swaitenv_metro ==1) +
+  #     bStWa4*(saccstop_metro==1)*(swaitenv_metro ==2) + bStWa5*(saccstop_metro==2)*(swaitenv_metro ==2) +bStWa6*(saccstop_metro==3)*(swaitenv_metro ==2) +
+  #     bStWa7*(saccstop_metro==1)*(swaitenv_metro ==3) +bStWa8*(saccstop_metro==2)*(swaitenv_metro ==3) +bStWa9*(saccstop_metro==3)*(swaitenv_metro ==3)+
+  #     bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
+  #   others = asc_others)
+  
   tInc <- relInc^3
   V = list(
-    bus = asc_bus + bTInc*tInc*t_bus + bCost*(0.5/relInc)*tc_bus+bCro*(sboal_bus==2) +
-      bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+
-      bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2) +
+    bus = asc_bus + bTInc*log(tInc)*t_bus + bCost*log(relInc**0.5)*tc_bus+bCro*(sboal_bus==2) +
+      bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv1*(swaitenv_bus ==2)+
+      bStop1/relInc*(saccstop_bus==1) + bStop1/relInc*(saccstop_bus==2) +
       bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
-    metro = asc_metro + bTInc*tInc*t_metro + bCost*(0.5/relInc)*tc_metro+ mCro*(sboal_metro==2) +
-      mWaitEnv1*(swaitenv_metro ==1) + mWaitEnv2*(swaitenv_metro ==2)+
-      mStop1*(saccstop_metro ==1) + mStop2*(saccstop_metro ==2) +
-      mSafety1*(safety_metro==1) + mSafety2*(safety_metro==2),
+    metro = asc_metro + bTInc*log(tInc)*t_metro + bCost*log(relInc**0.5)*tc_metro+ bCro*(sboal_metro==2) +
+      bWaitEnv1*(swaitenv_metro ==1) + bWaitEnv1*(swaitenv_metro ==2)+
+      bStop1/relInc*(saccstop_metro ==1) + bStop1/relInc*(saccstop_metro ==2) +
+      bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
     others = asc_others)
+  
+  
   mnl_settings = list(
     alternatives  = c(bus="Bus", metro="Metro",others="None"),
     avail         = list(bus=av_bus, metro=av_metro,others=av_others),
