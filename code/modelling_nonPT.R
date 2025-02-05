@@ -13,7 +13,7 @@ apollo_initialise()
 
 ### Set core controls
 apollo_control = list(
-  modelName  ="int_mnl_PT_322025",
+  modelName  ="int_mnl_nonPT_522025",
   modelDescr ="Simple MNL on Gender safety data;
               Model with income and age;
               Considering same cofficient for time and cost",
@@ -138,9 +138,8 @@ database_nonPT <-database[database$PT_users==0,]
 
 apollo_beta=c(asc_bus = 0, asc_metro = 0, asc_others = 0,
               bTInc=0, bCost = 0, bCro= 0, 
-              bWaitEnv1= 0, bWaitEnv2= 0,
-              bStop1 = 0, bStop2 = 0,
-              bSafety1 = 0,bSafety2 = 0)
+              bWaitEnv1= 0,bStop1 = 0, bSafety1 = 0,
+              bSafety2=0)
 
 # apollo_beta=c(asc_bus = 0, asc_metro = 0, asc_others = 0,
 #               bTInc=0, bCost = 0, bCro= 0, bStWa1=0,bStWa2=0,
@@ -161,7 +160,7 @@ apollo_fixed = c('asc_bus')
 
 
 # apollo_inputs = apollo_validateInputs(database = database)
-apollo_inputs = apollo_validateInputs(database = database_PT)
+apollo_inputs = apollo_validateInputs(database = database_nonPT)
 
 
 # ################################################################# #
@@ -189,17 +188,17 @@ apollo_probabilities=function(apollo_beta, apollo_inputs,
   #     mWaitEnv1*(swaitenv_metro ==1) + mWaitEnv2*(swaitenv_metro ==2)+      mStop1*(saccstop_metro ==1) + mStop2*(saccstop_metro ==2) +
   #     mSafety1*(safety_metro==1) + mSafety2*(safety_metro==2),
   #   others = asc_others)
-  tInc <- relInc^3
-  V = list(
-    bus = asc_bus + bTInc*tInc*t_bus + bCost*(0.5/relInc)*tc_bus+bCro*relInc*(sboal_bus==2)+
-      bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+
-      bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2) +
-      bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
-    metro = asc_metro + bTInc*tInc*t_metro + bCost*(0.5/relInc)*tc_metro+ bCro*relInc*(sboal_metro==2) +
-      bWaitEnv1*(swaitenv_metro ==1) + bWaitEnv2*(swaitenv_metro ==2)+
-      bStop1*(saccstop_metro ==1) + bStop2*(saccstop_metro ==2) +
-      bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
-    others = asc_others)
+  # tInc <- relInc^3
+  # V = list(
+  #   bus = asc_bus + bTInc*tInc*t_bus + bCost*(0.5/relInc)*tc_bus+bCro*relInc*(sboal_bus==2)+
+  #     bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+
+  #     bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2) +
+  #     bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
+  #   metro = asc_metro + bTInc*tInc*t_metro + bCost*(0.5/relInc)*tc_metro+ bCro*relInc*(sboal_metro==2) +
+  #     bWaitEnv1*(swaitenv_metro ==1) + bWaitEnv2*(swaitenv_metro ==2)+
+  #     bStop1*(saccstop_metro ==1) + bStop2*(saccstop_metro ==2) +
+  #     bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
+  #   others = asc_others)
   
   ### Utility equation for non-PT users
   ### Equations without interaction variables and considering the same coefficients across different modes
@@ -229,18 +228,18 @@ apollo_probabilities=function(apollo_beta, apollo_inputs,
   #     bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
   #   others = asc_others)
   
-  # tInc <- relInc^3
-  # V = list(
-  #   bus = asc_bus + bTInc*log(tInc)*t_bus + bCost*log(relInc**0.5)*tc_bus+bCro*(sboal_bus==2) +
-  #     bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv1*(swaitenv_bus ==2)+
-  #     bStop1/relInc*(saccstop_bus==1) + bStop1/relInc*(saccstop_bus==2) +
-  #     bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
-  #   metro = asc_metro + bTInc*log(tInc)*t_metro + bCost*log(relInc**0.5)*tc_metro+ bCro*(sboal_metro==2) +
-  #     bWaitEnv1*(swaitenv_metro ==1) + bWaitEnv1*(swaitenv_metro ==2)+
-  #     bStop1/relInc*(saccstop_metro ==1) + bStop1/relInc*(saccstop_metro ==2) +
-  #     bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
-  #   others = asc_others)
-  
+  tInc <- relInc^3
+  V = list(
+    bus = asc_bus + bTInc*log(tInc)*t_bus + bCost*log(relInc**0.5)*tc_bus+bCro*(sboal_bus==2) +
+      bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv1*(swaitenv_bus ==2)+
+      bStop1/relInc*(saccstop_bus==1) + bStop1/relInc*(saccstop_bus==2) +
+      bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
+    metro = asc_metro + bTInc*log(tInc)*t_metro + bCost*log(relInc**0.5)*tc_metro+ bCro*(sboal_metro==2) +
+      bWaitEnv1*(swaitenv_metro ==1) + bWaitEnv1*(swaitenv_metro ==2)+
+      bStop1/relInc*(saccstop_metro ==1) + bStop1/relInc*(saccstop_metro ==2) +
+      bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
+    others = asc_others)
+
   
   mnl_settings = list(
     alternatives  = c(bus="Bus", metro="Metro",others="None"),
@@ -291,8 +290,9 @@ apollo_deltaMethod(model, list(operation='ratio', parName1='bTInc',
 #### WTP ####
 # # # # # # #
 alts <- c("Bus", "Metro", "None")
-inc  <- c(low=18000, mid=50000, upp=118750)
-inc  <- round(inc/mean(database_PT$HH_Inc_num),4)
+# inc  <- c(low=120000, mid=150000, upp=180000)
+inc  <- c(low=150000, mid=175000, upp=200000)
+inc  <- round(inc/mean(database_nonPT$HH_Inc_num),4)
 
 B <- names(apollo_beta)
 B <- B[!(B %in% c(apollo_fixed, "bCost", grep("^[m|l]", B, value=TRUE)))]
@@ -302,7 +302,7 @@ M <- data.frame(expression= rep("", M),
 dbP <- data.frame(attribute=rep("", 10), value=rep(0, 10), sd=rep(0, 10))
 
 for(i in 1:length(inc)){
-  e <- paste0("-1*", B, "/(bCost*(","0.5/", inc[i], "))")
+  e <- paste0("-1*", B, "/(bCost*(","log(", inc[i],"**0.5", ")))")
   e <- paste0(ifelse(grepl("TI", B), "60*", ""), e)
   e <- paste0(ifelse(grepl("Cro", B), paste0(inc[i], "*"), ""), e)
   e <- apollo_deltaMethod(model, list(expression=e))
@@ -315,7 +315,7 @@ for(i in 1:length(inc)){
 }
 print(M[order(M$expression),], digits=4)
 
-# write.csv(M,"./results/excel_outputs/WTP.csv")
+write.csv(M,"./results/excel_outputs/WTP_nonPT.csv")
 
 # # # # # # #
 #### AME ####
@@ -323,7 +323,7 @@ print(M[order(M$expression),], digits=4)
 
 pred <- apollo_prediction(model, apollo_probabilities, apollo_inputs)
 pred <- pred[,-which(colnames(pred)=='chosen'),]
-pred$hInc <- database_PT$HH_Inc_num>((50000+118750)/2)
+pred$hInc <- database_nonPT$HH_Inc_num>((150000+180000)/2)
 hist(pred$metro[pred$hInc])
 round(quantile(pred$metro[pred$hInc], probs=c(0, .1, .2, .3, .4, .5, .6, .7, .8, .9, .95)), 2)
 mean(pred$metro[pred$hInc])
@@ -350,26 +350,26 @@ ame <- function(db0, db1){
 }
 
 alts <- c("bus", "metro", "others")
-inc  <- c(low=18000, mid=50000, high=118750)
+inc  <- c(low=150000, mid=175000, high=200000)
 M <- matrix(0, nrow=length(inc), ncol=3*length(alts), 
             dimnames=list(names(inc), 
                           paste0(rep(alts, each=3), ".q", c("L", "M", "H"))))
 
 ### AME of access time 
 for(i in names(inc)){
-  db0 <- database_PT
-  db0$relInc <- inc[i]/mean(database_PT$HH_Inc_num)
+  db0 <- database_nonPT
+  db0$relInc <- inc[i]/mean(database_nonPT$HH_Inc_num)
   for(a in alts[1:2]){
     db1 <- db0
-    db1[,paste0("t_", a)] <- db1[,paste0("t_", a)] + 1.49*20
+    db1[,paste0("t_", a)] <- db1[,paste0("t_", a)] + 1.49*5
     M[i, paste0(a,  ".q", c("L", "M", "H"))] <- ame(db0, db1)[,a]
   }
 }; round(M, 3)
 
 ### AME of waiting time 
 for(i in names(inc)){
-  db0 <- database_PT
-  db0$relInc <- inc[i]/mean(database_PT$HH_Inc_num)
+  db0 <- database_nonPT
+  db0$relInc <- inc[i]/mean(database_nonPT$HH_Inc_num)
   for(a in alts[1:2]){
     db1 <- db0
     db1[,paste0("t_", a)] <- db1[,paste0("t_", a)] + 1.83*10
@@ -380,8 +380,8 @@ for(i in names(inc)){
 
 ### AME of travel time 
 for(i in names(inc)){
-  db0 <- database_PT
-  db0$relInc <- inc[i]/mean(database_PT$HH_Inc_num)
+  db0 <- database_nonPT
+  db0$relInc <- inc[i]/mean(database_nonPT$HH_Inc_num)
   for(a in alts[1:2]){
     db1 <- db0
     db1[,paste0("t_", a)] <- db1[,paste0("t_", a)] + 10
@@ -391,8 +391,8 @@ for(i in names(inc)){
 
 ### AME of access to stop = 1 (Active and well-lit streets) 
 for(i in names(inc)){
-  db0 <- database_PT
-  db0$relInc <- inc[i]/mean(database_PT$HH_Inc_num)
+  db0 <- database_nonPT
+  db0$relInc <- inc[i]/mean(database_nonPT$HH_Inc_num)
   for(a in alts[1:2]){
     db0[, paste0("saccstop_", a)] <- 3
     db1 <- db0
@@ -403,8 +403,8 @@ for(i in names(inc)){
 
 ### AME of access to stop = 2 (clear signages & boards) 
 for(i in names(inc)){
-  db0 <- database_PT
-  db0$relInc <- inc[i]/mean(database_PT$HH_Inc_num)
+  db0 <- database_nonPT
+  db0$relInc <- inc[i]/mean(database_nonPT$HH_Inc_num)
   for(a in alts[1:2]){
     db0[, paste0("saccstop_", a)] <- 3
     db1 <- db0
@@ -415,8 +415,8 @@ for(i in names(inc)){
 
 ### AME of boarding/alighting = 2 (Boarding/Alighting in queuing order) 
 for(i in names(inc)){
-  db0 <- database_PT
-  db0$relInc <- inc[i]/mean(database_PT$HH_Inc_num)
+  db0 <- database_nonPT
+  db0$relInc <- inc[i]/mean(database_nonPT$HH_Inc_num)
   for(a in alts[1:2]){
     db0[, paste0("sboal_", a)] <- 1
     db1 <- db0
@@ -428,8 +428,8 @@ for(i in names(inc)){
 
 ### AME of waiting environment = 1 ("Other people present at the stop") 
 for(i in names(inc)){
-  db0 <- database_PT
-  db0$relInc <- inc[i]/mean(database_PT$HH_Inc_num)
+  db0 <- database_nonPT
+  db0$relInc <- inc[i]/mean(database_nonPT$HH_Inc_num)
   for(a in alts[1:2]){
     db0[, paste0("swaitenv_", a)] <- 3
     db1 <- db0
@@ -440,8 +440,8 @@ for(i in names(inc)){
 
 ### AME of waiting environment = 2 ("Staff/Police Presence") 
 for(i in names(inc)){
-  db0 <- database_PT
-  db0$relInc <- inc[i]/mean(database_PT$HH_Inc_num)
+  db0 <- database_nonPT
+  db0$relInc <- inc[i]/mean(database_nonPT$HH_Inc_num)
   for(a in alts[1:2]){
     db0[, paste0("swaitenv_", a)] <- 3
     db1 <- db0
@@ -452,8 +452,8 @@ for(i in names(inc)){
 
 ### AME of on-board safety = 1 ("Seating Space available") 
 for(i in names(inc)){
-  db0 <- database_PT
-  db0$relInc <- inc[i]/mean(database_PT$HH_Inc_num)
+  db0 <- database_nonPT
+  db0$relInc <- inc[i]/mean(database_nonPT$HH_Inc_num)
   for(a in alts[1:2]){
     db0[, paste0("safety_", a)] <- 3
     db1 <- db0
@@ -464,8 +464,8 @@ for(i in names(inc)){
 
 ### AME of on-board safety = 2 ("Comfortable Standing") 
 for(i in names(inc)){
-  db0 <- database_PT
-  db0$relInc <- inc[i]/mean(database_PT$HH_Inc_num)
+  db0 <- database_nonPT
+  db0$relInc <- inc[i]/mean(database_nonPT$HH_Inc_num)
   for(a in alts[1:2]){
     db0[, paste0("safety_", a)] <- 3
     db1 <- db0
@@ -484,8 +484,8 @@ calculate_ame <- function(attribute="t_",value=1,increase) {
               dimnames=list(names(inc), 
                             paste0(rep(alts[1:2], each=3), ".q", c("L", "M", "H"))))
   for (i in names(inc)) {
-    db0 <- database_PT
-    db0$relInc <- inc[i] / mean(database_PT$HH_Inc_num)
+    db0 <- database_nonPT
+    db0$relInc <- inc[i] / mean(database_nonPT$HH_Inc_num)
     for (a in alts[1:2]) {
       db1 <- db0
       db1[, paste0(attribute, a)] <- db1[, paste0(attribute, a)] + value * increase
@@ -501,8 +501,8 @@ calculate_ame_factor <- function(attribute="t_",value=1,increase) {
               dimnames=list(names(inc), 
                             paste0(rep(alts[1:2], each=3), ".q", c("L", "M", "H"))))
   for (i in names(inc)) {
-    db0 <- database_PT
-    db0$relInc <- inc[i] / mean(database_PT$HH_Inc_num)
+    db0 <- database_nonPT
+    db0$relInc <- inc[i] / mean(database_nonPT$HH_Inc_num)
     for (a in alts[1:2]) {
       db0[, paste0(attribute, a)] <- value
       db1 <- db0
