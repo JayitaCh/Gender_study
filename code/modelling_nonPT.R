@@ -13,7 +13,7 @@ apollo_initialise()
 
 ### Set core controls
 apollo_control = list(
-  modelName  ="int_mnl_nonPT_522025",
+  modelName  ="int_mnl_nonPT_31Mar2025",
   modelDescr ="Simple MNL on Gender safety data;
               Model with income and age;
               Considering same cofficient for time and cost",
@@ -138,7 +138,7 @@ database_nonPT <-database[database$PT_users==0,]
 
 apollo_beta=c(asc_bus = 0, asc_metro = 0, asc_others = 0,
               bTInc=0, bCost = 0, bCro= 0, 
-              bWaitEnv1= 0,bStop1 = 0, bSafety1 = 0,
+              bWaitEnv1= 0,bStop1 = 0, bStop2 = 0,bSafety1 = 0,
               bSafety2=0)
 
 # apollo_beta=c(asc_bus = 0, asc_metro = 0, asc_others = 0,
@@ -232,11 +232,11 @@ apollo_probabilities=function(apollo_beta, apollo_inputs,
   V = list(
     bus = asc_bus + bTInc*log(tInc)*t_bus + bCost*log(relInc**0.5)*tc_bus+bCro*(sboal_bus==2) +
       bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv1*(swaitenv_bus ==2)+
-      bStop1/relInc*(saccstop_bus==1) + bStop1/relInc*(saccstop_bus==2) +
+      bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2)/(relInc**2) +
       bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
     metro = asc_metro + bTInc*log(tInc)*t_metro + bCost*log(relInc**0.5)*tc_metro+ bCro*(sboal_metro==2) +
       bWaitEnv1*(swaitenv_metro ==1) + bWaitEnv1*(swaitenv_metro ==2)+
-      bStop1/relInc*(saccstop_metro ==1) + bStop1/relInc*(saccstop_metro ==2) +
+      bStop1*(saccstop_metro ==1) + bStop2*(saccstop_metro ==2)/(relInc**2) +
       bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
     others = asc_others)
 
@@ -270,19 +270,19 @@ apollo_probabilities=function(apollo_beta, apollo_inputs,
 # ################################################################# #
 
 
-model = apollo_estimate(apollo_beta, apollo_fixed, 
+model_nPT = apollo_estimate(apollo_beta, apollo_fixed, 
                         apollo_probabilities, apollo_inputs, 
                         estimate_settings = list(writeIter=FALSE))
 
 
-apollo_modelOutput(model)
+apollo_modelOutput(model_nPT)
 
 
-apollo_saveOutput(model, list(saveEst=FALSE, saveCov=FALSE, 
+apollo_saveOutput(model_nPT, list(saveEst=FALSE, saveCov=FALSE, 
                               saveCorr=FALSE, saveModelObject=FALSE))
 
 
-apollo_deltaMethod(model, list(operation='ratio', parName1='bTInc', 
+apollo_deltaMethod(model_nPT, list(operation='ratio', parName1='bTInc', 
                                parName2='bCost')) # 1.87 INR/min
 
 
@@ -303,9 +303,10 @@ dbP <- data.frame(attribute=rep("", 10), value=rep(0, 10), sd=rep(0, 10))
 
 for(i in 1:length(inc)){
   e <- paste0("-1*", B, "/(bCost*(","log(", inc[i],"**0.5", ")))")
-  e <- paste0(ifelse(grepl("TI", B), "60*", ""), e)
+  e <- paste0(ifelse(grepl("TI", B), "60*",""), e)
+  # e <- paste0(ifelse(grepl("TI", B), paste0("60*", "log(",inc[i],")"),""), e)
   e <- paste0(ifelse(grepl("Cro", B), paste0(inc[i], "*"), ""), e)
-  e <- apollo_deltaMethod(model, list(expression=e))
+  e <- apollo_deltaMethod(model_nPT, list(expression=e))
   tmp <- (i-1)*length(B)
   tmp <- (tmp + 1):(tmp + length(B))
   M[tmp, "expression"] <- paste0(B, ".", names(inc)[i])
@@ -317,25 +318,72 @@ print(M[order(M$expression),], digits=4)
 
 write.csv(M,"./results/excel_outputs/WTP_nonPT.csv")
 
+B <- names(apollo_beta)
+B <- B[!(B %in% c(apollo_fixed, "bTInc","bCost", grep("^[m|l]", B, value=TRUE)))]
+M <- length(B)*length(inc)
+M <- data.frame(expression= rep("", M),
+                q.025= rep(0, M), mean= rep(0, M), q.975= rep(0, M))
+dbP <- data.frame(attribute=rep("", 10), value=rep(0, 10), sd=rep(0, 10))
+
+for(i in 1:length(inc)){
+  # e <- paste0("1/(",B, "/abs(bTInc*(","log(", inc[i],"**3", "))))","/60")
+  # e <- paste0(ifelse(grepl("TI", B), "60*", ""), e)
+  e <- paste0("60/(",B, "/abs(bTInc*(","log(", inc[i],"**3", "))))")
+  e <- paste0(ifelse(grepl("Cro", B), paste0(inc[i],"**2", "*"), ""), e)
+  e <- apollo_deltaMethod(model_nPT, list(expression=e))
+  tmp <- (i-1)*length(B)
+  tmp <- (tmp + 1):(tmp + length(B))
+  M[tmp, "expression"] <- paste0(B, ".", names(inc)[i])
+  M[tmp, "mean"      ] <- e$Value
+  M[tmp, "q.025"     ] <- e$Value - 1.96*e$s.e.
+  M[tmp, "q.975"     ] <- e$Value + 1.96*e$s.e.
+  
+#   # Plot the results using ggplot2
+#   wtp_npt<- ggplot(M[tmp,], aes(x = factor(Safety, levels = c("Crowded\n standing", 
+#                                                                          "Comfortable standing with\n adequate grab handles\n for support",
+#                                                                          "Seating space\n available")), 
+#                                            y = M, color = Income_Group, group = Income_Group)) +
+#     geom_line(size=1) +
+#     geom_point(size=2) +
+#     geom_errorbar(aes(ymin = L, ymax = H), width = 0.2) +
+#     scale_color_manual(values = c("Low" = "#FF4500",  
+#                                   "Medium" = "#00CED1",
+#                                   "High" = "#FFD700"))+
+#     facet_wrap(~ Alternative,labeller = labeller(Alternative=facet_labels)) +
+#     labs(title = "Average Marginal Effect of On-board Safety Changes",
+#          x = "On-board Safety Change",
+#          y = "Average Marginal Effect") +
+#     theme_minimal()+
+#     theme(axis.title.x = element_text(face="bold"),
+#           axis.title.y = element_text(face = "bold"))
+#   
+#   print(safety_ame)
+#   
+#   ggsave("../Gender_study/results/images/safety_ame_nPT.png",plot = safety_ame,width = 10,height = 4)
+}
+print(M[order(M$expression),], digits=4)
+
+write.csv(M,"./results/excel_outputs/WTP_tt_nonPT.csv")
+
 # # # # # # #
 #### AME ####
 # # # # # # #
 
-pred <- apollo_prediction(model, apollo_probabilities, apollo_inputs)
+pred <- apollo_prediction(model_nPT, apollo_probabilities, apollo_inputs)
 pred <- pred[,-which(colnames(pred)=='chosen'),]
 pred$hInc <- database_nonPT$HH_Inc_num>((150000+180000)/2)
-hist(pred$metro[pred$hInc])
+# hist(pred$metro[pred$hInc])
 round(quantile(pred$metro[pred$hInc], probs=c(0, .1, .2, .3, .4, .5, .6, .7, .8, .9, .95)), 2)
 mean(pred$metro[pred$hInc])
 sd(pred$metro[pred$hInc])
 
 ame <- function(db0, db1){
   apIn <- apollo_validateInputs(database=db0, silent=TRUE)
-  pred0 <- apollo_prediction(model, apollo_probabilities, apIn,
+  pred0 <- apollo_prediction(model_nPT, apollo_probabilities, apIn,
                              prediction_settings=list(runs=100))[['draws']]
   pred0 <- pred0[,-which(colnames(pred0)=='chosen'),]
   apIn <- apollo_validateInputs(database=db1, silent=TRUE)
-  pred1 <- apollo_prediction(model, apollo_probabilities, apIn,
+  pred1 <- apollo_prediction(model_nPT, apollo_probabilities, apIn,
                              prediction_settings=list(runs=100))[['draws']]
   pred1 <- pred1[,-which(colnames(pred1)=='chosen'),]
   av <- pred0[,,1]!=0 & pred1[,,1]!=0
@@ -350,7 +398,7 @@ ame <- function(db0, db1){
 }
 
 alts <- c("bus", "metro", "others")
-inc  <- c(low=150000, mid=175000, high=200000)
+inc  <- c(low=150000, mid=175000, upp=200000)
 M <- matrix(0, nrow=length(inc), ncol=3*length(alts), 
             dimnames=list(names(inc), 
                           paste0(rep(alts, each=3), ".q", c("L", "M", "H"))))
@@ -559,7 +607,7 @@ access_ame<- ggplot(ame_pivot, aes(x = Access_Time, y = M, color = Income_Group,
 
 print(access_ame)
 
-ggsave("../Gender_study/results/images/access_ame.png",plot = access_ame,width = 8,height = 4)
+ggsave("../Gender_study/results/images/access_ame_nPT.png",plot = access_ame,width = 8,height = 4)
 
 # Calculate AME for 5 mins, 10 mins, 15 mins and 20 mins increases in waiting time
 wame_5 <- calculate_ame(attribute="t_",value=1.83,5)
@@ -607,7 +655,7 @@ waiting_ame<- ggplot(wame_pivot, aes(x = Waiting_Time, y = M, color = Income_Gro
 
 print(waiting_ame)
 
-ggsave("../Gender_study/results/images/waiting_ame.png",plot = waiting_ame,width = 8,height = 4)
+ggsave("../Gender_study/results/images/waiting_ame_nPT.png",plot = waiting_ame,width = 8,height = 4)
 
 # Calculate AME for 5 mins, 10 mins, 15 mins and 20 mins increases in travel time
 ttame_5 <- calculate_ame(attribute="t_",value=1,5)
@@ -655,7 +703,7 @@ travel_ame<- ggplot(ttame_pivot, aes(x = Travel_Time, y = M, color = Income_Grou
 
 print(travel_ame)
 
-ggsave("../Gender_study/results/images/travel_ame.png",plot = travel_ame,width = 8,height = 4)
+ggsave("../Gender_study/results/images/travel_ame_nPT.png",plot = travel_ame,width = 8,height = 4)
 
 # Calculate AME for access to stop
 accstop_ame_3 <- calculate_ame_factor(attribute="saccstop_",value=3,3)
@@ -711,7 +759,7 @@ accstop_ame<- ggplot(accstopame_pivot, aes(x = factor(Access_stop, levels = c("A
 
 print(accstop_ame)
 
-ggsave("../Gender_study/results/images/accstop_ame.png",plot = accstop_ame,width = 10,height = 4)
+ggsave("../Gender_study/results/images/accstop_ame_nPT.png",plot = accstop_ame,width = 10,height = 4)
 
 # Calculate AME for boarding/alighting
 sboal_ame_2 <- calculate_ame_factor(attribute="sboal_",value=1,2)
@@ -759,7 +807,7 @@ sboal_ame<- ggplot(sboalame_pivot, aes(x = factor(Board_alight, levels = c("Boar
 
 print(sboal_ame)
 
-ggsave("../Gender_study/results/images/sboal_ame.png",plot = sboal_ame,width = 10,height = 4)
+ggsave("../Gender_study/results/images/sboal_ame_nPT.png",plot = sboal_ame,width = 10,height = 4)
 
 
 # Calculate AME for onboard safety
@@ -812,7 +860,7 @@ safety_ame<- ggplot(safetyame_pivot, aes(x = factor(Safety, levels = c("Crowded\
 
 print(safety_ame)
 
-ggsave("../Gender_study/results/images/safety_ame.png",plot = safety_ame,width = 10,height = 4)
+ggsave("../Gender_study/results/images/safety_ame_nPT.png",plot = safety_ame,width = 10,height = 4)
 
 # Calculate AME for waiting environment
 swaitenv_ame_3 <- calculate_ame_factor(attribute="swaitenv_",value=3,3)
@@ -864,4 +912,4 @@ swaitenv_ame<- ggplot(swaitenvame_pivot, aes(x = factor(Wait_env, levels = c("Wa
 
 print(swaitenv_ame)
 
-ggsave("../Gender_study/results/images/swaitenv_ame.png",plot = swaitenv_ame,width = 10,height = 4)
+ggsave("../Gender_study/results/images/swaitenv_ame_nPT.png",plot = swaitenv_ame,width = 10,height = 4)

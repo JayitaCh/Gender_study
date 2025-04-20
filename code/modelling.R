@@ -13,7 +13,7 @@ apollo_initialise()
 
 ### Set core controls
 apollo_control = list(
-  modelName  ="int_mnl_PT_322025",
+  modelName  ="int_mnl_PT_31Mar2025",
   modelDescr ="Simple MNL on Gender safety data;
               Model with income and age;
               Considering same cofficient for time and cost",
@@ -189,13 +189,24 @@ apollo_probabilities=function(apollo_beta, apollo_inputs,
   #     mWaitEnv1*(swaitenv_metro ==1) + mWaitEnv2*(swaitenv_metro ==2)+      mStop1*(saccstop_metro ==1) + mStop2*(saccstop_metro ==2) +
   #     mSafety1*(safety_metro==1) + mSafety2*(safety_metro==2),
   #   others = asc_others)
-  tInc <- relInc^3
+  # tInc <- relInc^3
+  # V = list(
+  #   bus = asc_bus + bTInc*tInc*t_bus + bCost*(0.5/relInc)*tc_bus+bCro*relInc*(sboal_bus==2)+
+  #     bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+
+  #     bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2) +
+  #     bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
+  #   metro = asc_metro + bTInc*tInc*t_metro + bCost*(0.5/relInc)*tc_metro+ bCro*relInc*(sboal_metro==2) +
+  #     bWaitEnv1*(swaitenv_metro ==1) + bWaitEnv2*(swaitenv_metro ==2)+
+  #     bStop1*(saccstop_metro ==1) + bStop2*(saccstop_metro ==2) +
+  #     bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
+  #   others = asc_others)
+  ## Final formulation
   V = list(
-    bus = asc_bus + bTInc*tInc*t_bus + bCost*(0.5/relInc)*tc_bus+bCro*relInc*(sboal_bus==2)+
+    bus = asc_bus + bTInc*relInc*t_bus + bCost*(0.1/relInc)*tc_bus+bCro*(relInc**2)*(sboal_bus==2)+
       bWaitEnv1*(swaitenv_bus ==1) + bWaitEnv2*(swaitenv_bus ==2)+
       bStop1*(saccstop_bus==1) + bStop2*(saccstop_bus==2) +
       bSafety1*(safety_bus==1) + bSafety2*(safety_bus==2),
-    metro = asc_metro + bTInc*tInc*t_metro + bCost*(0.5/relInc)*tc_metro+ bCro*relInc*(sboal_metro==2) +
+    metro = asc_metro + bTInc*relInc*t_metro + bCost*(0.1/relInc)*tc_metro+ bCro*(relInc**2)*(sboal_metro==2) +
       bWaitEnv1*(swaitenv_metro ==1) + bWaitEnv2*(swaitenv_metro ==2)+
       bStop1*(saccstop_metro ==1) + bStop2*(saccstop_metro ==2) +
       bSafety1*(safety_metro==1) + bSafety2*(safety_metro==2),
@@ -271,19 +282,19 @@ apollo_probabilities=function(apollo_beta, apollo_inputs,
 # ################################################################# #
 
 
-model = apollo_estimate(apollo_beta, apollo_fixed, 
+model_PT = apollo_estimate(apollo_beta, apollo_fixed, 
                         apollo_probabilities, apollo_inputs, 
                         estimate_settings = list(writeIter=FALSE))
 
 
-apollo_modelOutput(model)
+apollo_modelOutput(model_PT)
 
 
-apollo_saveOutput(model, list(saveEst=FALSE, saveCov=FALSE, 
+apollo_saveOutput(model_PT, list(saveEst=FALSE, saveCov=FALSE, 
                               saveCorr=FALSE, saveModelObject=FALSE))
 
 
-apollo_deltaMethod(model, list(operation='ratio', parName1='bTInc', 
+apollo_deltaMethod(model_PT, list(operation='ratio', parName1='bTInc', 
                                parName2='bCost')) # 1.87 INR/min
 
 
@@ -294,18 +305,44 @@ alts <- c("Bus", "Metro", "None")
 inc  <- c(low=18000, mid=50000, upp=118750)
 inc  <- round(inc/mean(database_PT$HH_Inc_num),4)
 
+# B <- names(apollo_beta)
+# B <- B[!(B %in% c(apollo_fixed, "bCost", grep("^[m|l]", B, value=TRUE)))]
+# M <- length(B)*length(inc)
+# M <- data.frame(expression= rep("", M), 
+#                 q.025= rep(0, M), mean= rep(0, M), q.975= rep(0, M))
+# dbP <- data.frame(attribute=rep("", 10), value=rep(0, 10), sd=rep(0, 10))
+# 
+# for(i in 1:length(inc)){
+#   e <- paste0("-1*", B, "/(bCost*(","0.5/", inc[i], "))")
+#   e <- paste0(ifelse(grepl("TI", B), "60*", ""), e)
+#   e <- paste0(ifelse(grepl("Cro", B), paste0(inc[i], "*"), ""), e)
+#   e <- apollo_deltaMethod(model_PT, list(expression=e))
+#   tmp <- (i-1)*length(B)
+#   tmp <- (tmp + 1):(tmp + length(B))
+#   M[tmp, "expression"] <- paste0(B, ".", names(inc)[i])
+#   M[tmp, "mean"      ] <- e$Value
+#   M[tmp, "q.025"     ] <- e$Value - 1.96*e$s.e.
+#   M[tmp, "q.975"     ] <- e$Value + 1.96*e$s.e.
+# }
+# print(M[order(M$expression),], digits=4)
+
+# # # # # # #
+#### Travel time reductions ####
+# # # # # # #
+
 B <- names(apollo_beta)
-B <- B[!(B %in% c(apollo_fixed, "bCost", grep("^[m|l]", B, value=TRUE)))]
+B <- B[!(B %in% c(apollo_fixed, "bTInc","bCost", grep("^[m|l]", B, value=TRUE)))]
 M <- length(B)*length(inc)
-M <- data.frame(expression= rep("", M), 
+M <- data.frame(expression= rep("", M),
                 q.025= rep(0, M), mean= rep(0, M), q.975= rep(0, M))
 dbP <- data.frame(attribute=rep("", 10), value=rep(0, 10), sd=rep(0, 10))
 
 for(i in 1:length(inc)){
-  e <- paste0("-1*", B, "/(bCost*(","0.5/", inc[i], "))")
-  e <- paste0(ifelse(grepl("TI", B), "60*", ""), e)
-  e <- paste0(ifelse(grepl("Cro", B), paste0(inc[i], "*"), ""), e)
-  e <- apollo_deltaMethod(model, list(expression=e))
+  # e <- paste0("1/(",B, "/(abs(bTInc*", inc[i], "))",")","/60")
+  e <- paste0("60/(",B, "/(abs(bTInc*", inc[i], "))",")")
+  # e <- paste0(ifelse(grepl("TI", B), "60*", ""), e)
+  e <- paste0(ifelse(grepl("Cro", B), paste0(inc[i],"**2", "*"), ""), e)
+  e <- apollo_deltaMethod(model_PT, list(expression=e))
   tmp <- (i-1)*length(B)
   tmp <- (tmp + 1):(tmp + length(B))
   M[tmp, "expression"] <- paste0(B, ".", names(inc)[i])
@@ -315,27 +352,27 @@ for(i in 1:length(inc)){
 }
 print(M[order(M$expression),], digits=4)
 
-# write.csv(M,"./results/excel_outputs/WTP.csv")
+write.csv(M,"./results/excel_outputs/WTP_tt.csv")
 
 # # # # # # #
 #### AME ####
 # # # # # # #
 
-pred <- apollo_prediction(model, apollo_probabilities, apollo_inputs)
+pred <- apollo_prediction(model_PT, apollo_probabilities, apollo_inputs)
 pred <- pred[,-which(colnames(pred)=='chosen'),]
 pred$hInc <- database_PT$HH_Inc_num>((50000+118750)/2)
-hist(pred$metro[pred$hInc])
+# hist(pred$metro[pred$hInc])
 round(quantile(pred$metro[pred$hInc], probs=c(0, .1, .2, .3, .4, .5, .6, .7, .8, .9, .95)), 2)
 mean(pred$metro[pred$hInc])
 sd(pred$metro[pred$hInc])
 
 ame <- function(db0, db1){
   apIn <- apollo_validateInputs(database=db0, silent=TRUE)
-  pred0 <- apollo_prediction(model, apollo_probabilities, apIn,
+  pred0 <- apollo_prediction(model_PT, apollo_probabilities, apIn,
                              prediction_settings=list(runs=100))[['draws']]
   pred0 <- pred0[,-which(colnames(pred0)=='chosen'),]
   apIn <- apollo_validateInputs(database=db1, silent=TRUE)
-  pred1 <- apollo_prediction(model, apollo_probabilities, apIn,
+  pred1 <- apollo_prediction(model_PT, apollo_probabilities, apIn,
                              prediction_settings=list(runs=100))[['draws']]
   pred1 <- pred1[,-which(colnames(pred1)=='chosen'),]
   av <- pred0[,,1]!=0 & pred1[,,1]!=0
