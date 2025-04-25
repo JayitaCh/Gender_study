@@ -7,7 +7,7 @@ Model name                                  : int_mnl_PT_31Mar2025
 Model description                           : Simple MNL on Gender safety data;
               Model with income and age;
               Considering same cofficient for time and cost
-Model run at                                : 2025-04-25 12:25:30.863906
+Model run at                                : 2025-04-20 13:10:29.378792
 Estimation method                           : bgw
 Model diagnosis                             : Relative function convergence
 Optimisation diagnosis                      : Maximum found
@@ -33,10 +33,10 @@ AIC                                         :  2414.72
 BIC                                         :  2473.4 
 
 Estimated parameters                        : 11
-Time taken (hh:mm:ss)                       :  00:00:0.97 
-     pre-estimation                         :  00:00:0.56 
+Time taken (hh:mm:ss)                       :  00:00:0.87 
+     pre-estimation                         :  00:00:0.47 
      estimation                             :  00:00:0.14 
-     post-estimation                        :  00:00:0.27 
+     post-estimation                        :  00:00:0.26 
 Iterations                                  :  10  
 
 Unconstrained optimisation.
